@@ -512,10 +512,17 @@
     }
     .siivous-type::before { content: '✓'; color: var(--teal); font-weight: 800; }
     .siivous-img-block {
-      background: var(--light); border-radius: 20px;
+      border-radius: 20px;
       aspect-ratio: 5/4;
       display: flex; align-items: center; justify-content: center;
-      font-size: 4rem; color: var(--mid);
+      overflow: hidden;
+    }
+    .siivous-img-block img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .5s ease;
+    }
+    .siivous-img-block:hover img {
+      transform: scale(1.1);
     }
 
     /* ── PAKETTI ── */
@@ -1156,7 +1163,7 @@
         </div>
       </div>
       <div class="siivous-img-block">
-        <img src="images/Moppi.png" alt="Siivouspalvelut" style="max-width: 80%; height: auto;" />
+        <img src="images/Moppi.png" alt="Siivouspalvelut" />
       </div>
     </div>
   </div>
