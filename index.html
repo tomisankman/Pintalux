@@ -765,12 +765,12 @@
     }
     .contact-dude-img {
       position: absolute;
-      left: -550px;
-      bottom: -96px;
-      width: 900px !important; /* Pakotetaan koko ja suurennetaan hieman lisää */
-      max-width: none !important; /* Poistetaan yleinen 100% rajoitus */
+      left: -580px; /* Hieman lisää vasemmalle */
+      bottom: -250px; /* Reilusti alemmas (noin 4cm / 150px lisää) */
+      width: 1000px !important; /* Vielä hieman kokoa lisää */
+      max-width: none !important;
       height: auto;
-      z-index: 1; /* Nostetaan tekstin tasolle mutta pidetään sivuun siirrettynä */
+      z-index: -1; /* EHDOTTOMASTI tekstin taakse */
       opacity: 1;
       pointer-events: none;
       filter: drop-shadow(20px 10px 40px rgba(0,0,0,0.15));
