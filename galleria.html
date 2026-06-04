@@ -26,28 +26,14 @@
     .section { padding: 60px 0; }
     .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 30px; border-bottom: 3px solid #00a89d; display: inline-block; padding-bottom: 5px; }
 
-    /* YHTEISET KORTTI-TYYLIT */
-    .ba-card, .photo-card { 
-      background: #fff; 
-      border-radius: 20px; 
-      overflow: hidden; 
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05); 
-      border: 3px solid transparent; /* Varataan tila kehykselle */
-      transition: all 0.3s ease; 
-      cursor: pointer;
-    }
-    
-    /* HOVER-KEHYS KAIKILLE */
-    .ba-card:hover, .photo-card:hover {
-      border-color: #00a89d;
-      box-shadow: 0 12px 30px rgba(0,168,157,0.15);
-      transform: translateY(-5px);
-    }
+    /* KORTIT */
+    .ba-card, .photo-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 3px solid transparent; transition: all 0.3s ease; cursor: zoom-in; }
+    .ba-card:hover, .photo-card:hover { border-color: #00a89d; box-shadow: 0 12px 30px rgba(0,168,157,0.15); transform: translateY(-5px); }
 
     /* SLIDER */
     .ba-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); gap: 30px; margin-bottom: 50px; }
     @media (max-width: 500px) { .ba-grid { grid-template-columns: 1fr; } }
-    .ba-slider-wrap { position: relative; aspect-ratio: 4/3; overflow: hidden; background: #eee; }
+    .ba-slider-wrap { position: relative; aspect-ratio: 4/3; overflow: hidden; background: #eee; pointer-events: none; } /* Estetään sliderin liike kortin päällä klikattaessa */
     .ba-img-before, .ba-img-after { position: absolute; inset: 0; width: 100%; height: 100%; }
     .ba-img-before img, .ba-img-after img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .ba-img-after { clip-path: inset(0 50% 0 0); }
@@ -57,22 +43,21 @@
     .ba-label-before { left: 15px; background: rgba(0,0,0,0.6); }
     .ba-label-after { right: 15px; background: #00a89d; }
     .ba-caption { padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; background: #fff; }
-    .ba-caption-text { font-weight: 700; font-size: 1rem; }
 
-    /* GALLERIA ZOOM-EFEKTI */
+    /* GALLERIA */
     .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
     .photo-img-wrap { width: 100%; aspect-ratio: 4/3; overflow: hidden; }
-    .photo-card img { 
-      width: 100%; 
-      height: 100%; 
-      object-fit: cover; 
-      display: block; 
-      transition: transform 0.5s ease; /* Zoom-animaation kesto */
-    }
-    .photo-card:hover img {
-      transform: scale(1.1); /* Zoom-taso */
-    }
+    .photo-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+    .photo-card:hover img { transform: scale(1.1); }
     .photo-info { padding: 15px; font-weight: 700; font-size: 1rem; text-align: center; color: #1c2b3a; background: #fff; border-top: 1px solid #f0f0f0; }
+
+    /* LIGHTBOX (Suurennus) */
+    .lightbox { position: fixed; inset: 0; background: rgba(28, 43, 58, 0.95); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 40px; cursor: zoom-out; opacity: 0; transition: opacity 0.3s ease; }
+    .lightbox.active { display: flex; opacity: 1; }
+    .lightbox-content { position: relative; max-width: 90%; max-height: 90%; }
+    .lightbox img { max-width: 100%; max-height: 90vh; border-radius: 10px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border: 4px solid #fff; }
+    .lightbox-close { position: absolute; top: -50px; right: 0; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; background: none; border: none; }
+    .lightbox-caption { color: #fff; text-align: center; margin-top: 15px; font-weight: 700; font-size: 1.2rem; }
   </style>
 </head>
 <body>
@@ -82,7 +67,7 @@
   </nav>
 
   <header class="page-header">
-    <div class="container"><h1 class="page-title">Galleria</h1><p>Tutustu työmme jälkeen interaktiivisesti.</p></div>
+    <div class="container"><h1 class="page-title">Galleria</h1><p>Klikkaa kuvia nähdäksesi ne suurempana.</p></div>
   </header>
 
   <main class="container">
@@ -90,16 +75,27 @@
       <h2 class="section-title">Ennen & Jälkeen</h2>
       <div id="ba-container" class="ba-grid"></div>
     </section>
-
     <section class="section" style="border-top: 1px solid #e8edf3;">
       <h2 class="section-title">Kuvia kohteista</h2>
       <div id="photo-container" class="photo-grid"></div>
     </section>
   </main>
 
+  <!-- LIGHTBOX ELEMENTTI -->
+  <div id="lightbox" class="lightbox">
+    <button class="lightbox-close">&times;</button>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="Suurennettu kuva">
+      <div id="lightbox-text" class="lightbox-caption"></div>
+    </div>
+  </div>
+
   <script>
     const baContainer = document.getElementById('ba-container');
     const photoContainer = document.getElementById('photo-container');
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    const lbText = document.getElementById('lightbox-text');
     const exts = ['.jpeg', '.jpg', '.JPG', '.JPEG', '.png'];
 
     function smartLoad(img, name, type, index = 0) {
@@ -112,19 +108,40 @@
       }
     }
 
+    // Avaa lightbox
+    function openLightbox(src, text) {
+      lbImg.src = src;
+      lbText.innerText = text;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Estä skrollaus taustalla
+    }
+
+    // Sulje lightbox
+    lightbox.addEventListener('click', (e) => {
+      if (e.target !== lbImg) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
     ENNEN_JALKEEN_KUVAT.forEach(name => {
       const card = document.createElement('div');
       card.className = 'ba-card';
       const parts = name.split(/[_-]/);
+      const caption = (parts[1] || name).replace(/-/g, ' ');
       card.innerHTML = `
         <div class="ba-slider-wrap">
           <div class="ba-img-before"><img src="" alt="Ennen"></div>
           <div class="ba-img-after"><img src="" alt="Jälkeen"></div>
           <div class="ba-divider"></div><div class="ba-handle">↔</div>
-          <span class="ba-label ba-label-before">Ennen</span><span class="ba-label ba-label-after">Jälkeen</span>
         </div>
-        <div class="ba-caption"><span class="ba-caption-text">${(parts[1] || name).replace(/-/g, ' ')}</span><span style="font-size:0.85rem;color:#6b7a8d;font-weight:600;">${parts[0] || 'Satakunta'}</span></div>
+        <div class="ba-caption"><span class="ba-caption-text">${caption}</span><span style="font-size:0.85rem;color:#6b7a8d;font-weight:600;">${parts[0] || 'Satakunta'}</span></div>
       `;
+      // Klikkaus avaa "jälkeen"-kuvan suurena
+      card.addEventListener('click', () => {
+        const afterImg = card.querySelector('.ba-img-after img').src;
+        openLightbox(afterImg, caption + " (Valmis kohde)");
+      });
       baContainer.appendChild(card);
       smartLoad(card.querySelector('.ba-img-before img'), name, 'ennen');
       smartLoad(card.querySelector('.ba-img-after img'), name, 'jalkeen');
@@ -133,13 +150,16 @@
     KOHTEEKUVAT.forEach(fileName => {
       const card = document.createElement('div');
       card.className = 'photo-card';
+      const caption = fileName.split('.')[0].replace(/[_-]/g, ' ');
       card.innerHTML = `
         <div class="photo-img-wrap"><img src="images/galleria/${fileName}" alt="Kohdekuva"></div>
-        <div class="photo-info">${fileName.split('.')[0].replace(/[_-]/g, ' ')}</div>
+        <div class="photo-info">${caption}</div>
       `;
+      card.addEventListener('click', () => openLightbox(`images/galleria/${fileName}`, caption));
       photoContainer.appendChild(card);
     });
 
+    // Slider-logiikka (vain hover-liike, ei klikkausta)
     document.addEventListener('mousemove', (e) => {
       const slider = e.target.closest('.ba-slider-wrap');
       if (!slider) return;
