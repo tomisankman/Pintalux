@@ -765,17 +765,20 @@
     }
     .contact-dude-img {
       position: absolute;
-      left: -280px;
-      bottom: -40px;
-      width: 450px;
+      left: -500px;
+      bottom: -96px; /* Alin kohta sectionia, jotta osuu footeriin */
+      width: 800px; /* Noin kaksi kertaa isompi (aiemmin 450px) */
       height: auto;
       z-index: -1;
-      opacity: 0.9;
+      opacity: 1;
       pointer-events: none;
       filter: drop-shadow(0 10px 30px rgba(0,0,0,0.1));
     }
-    @media (max-width: 1300px) {
-      .contact-dude-img { left: -150px; width: 350px; opacity: 0.6; }
+    @media (max-width: 1500px) {
+      .contact-dude-img { left: -350px; width: 600px; opacity: 0.8; }
+    }
+    @media (max-width: 1200px) {
+      .contact-dude-img { left: -200px; width: 450px; opacity: 0.5; }
     }
     @media (max-width: 1000px) {
       .contact-dude-img { display: none; }
