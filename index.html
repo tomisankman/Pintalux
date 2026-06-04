@@ -765,20 +765,21 @@
     }
     .contact-dude-img {
       position: absolute;
-      left: -500px;
-      bottom: -96px; /* Alin kohta sectionia, jotta osuu footeriin */
-      width: 800px; /* Noin kaksi kertaa isompi (aiemmin 450px) */
+      left: -550px;
+      bottom: -96px;
+      width: 900px !important; /* Pakotetaan koko ja suurennetaan hieman lisää */
+      max-width: none !important; /* Poistetaan yleinen 100% rajoitus */
       height: auto;
-      z-index: -1;
+      z-index: 1; /* Nostetaan tekstin tasolle mutta pidetään sivuun siirrettynä */
       opacity: 1;
       pointer-events: none;
-      filter: drop-shadow(0 10px 30px rgba(0,0,0,0.1));
+      filter: drop-shadow(20px 10px 40px rgba(0,0,0,0.15));
     }
     @media (max-width: 1500px) {
-      .contact-dude-img { left: -350px; width: 600px; opacity: 0.8; }
+      .contact-dude-img { left: -400px; width: 700px !important; max-width: none !important; opacity: 0.9; }
     }
     @media (max-width: 1200px) {
-      .contact-dude-img { left: -200px; width: 450px; opacity: 0.5; }
+      .contact-dude-img { left: -250px; width: 500px !important; max-width: none !important; opacity: 0.7; }
     }
     @media (max-width: 1000px) {
       .contact-dude-img { display: none; }
