@@ -22,36 +22,37 @@
     .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 30px; border-bottom: 3px solid #00a89d; display: inline-block; padding-bottom: 5px; }
 
     /* KORTIT */
-    .ba-card, .photo-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 3px solid transparent; transition: all 0.3s ease; cursor: zoom-in; }
-    .ba-card:hover, .photo-card:hover { border-color: #00a89d; box-shadow: 0 12px 30px rgba(0,168,157,0.15); transform: translateY(-5px); }
+    .ba-card, .photo-card, .video-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 3px solid transparent; transition: all 0.3s ease; cursor: zoom-in; }
+    .ba-card:hover, .photo-card:hover, .video-card:hover { border-color: #00a89d; box-shadow: 0 12px 30px rgba(0,168,157,0.15); transform: translateY(-5px); }
 
-    /* SLIDER STYLE (Common for grid and lightbox) */
+    /* SLIDER */
+    .ba-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); gap: 30px; margin-bottom: 50px; }
+    @media (max-width: 500px) { .ba-grid { grid-template-columns: 1fr; } }
     .ba-slider-wrap { position: relative; aspect-ratio: 4/3; overflow: hidden; background: #eee; }
     .ba-img-before, .ba-img-after { position: absolute; inset: 0; width: 100%; height: 100%; }
     .ba-img-before img, .ba-img-after img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
     .ba-img-after { clip-path: inset(0 50% 0 0); }
     .ba-divider { position: absolute; top: 0; bottom: 0; width: 4px; background: #fff; left: 50%; transform: translateX(-50%); z-index: 3; box-shadow: 0 0 15px rgba(0,0,0,0.3); }
     .ba-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 48px; height: 48px; background: #fff; border-radius: 50%; z-index: 4; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-weight: bold; color: #00a89d; font-size: 20px; }
-    .ba-label { position: absolute; top: 15px; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #fff; z-index: 5; pointer-events: none; }
+    .ba-label { position: absolute; top: 15px; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #fff; z-index: 5; }
     .ba-label-before { left: 15px; background: rgba(0,0,0,0.6); }
     .ba-label-after { right: 15px; background: #00a89d; }
-
-    /* GRID SPECIFIC */
-    .ba-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); gap: 30px; margin-bottom: 50px; }
-    @media (max-width: 500px) { .ba-grid { grid-template-columns: 1fr; } }
     .ba-caption { padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; background: #fff; }
 
-    /* GALLERIA */
-    .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
-    .photo-img-wrap { width: 100%; aspect-ratio: 4/3; overflow: hidden; }
-    .photo-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
-    .photo-card:hover img { transform: scale(1.1); }
-    .photo-info { padding: 15px; font-weight: 700; font-size: 1rem; text-align: center; color: #1c2b3a; background: #fff; border-top: 1px solid #f0f0f0; }
+    /* GALLERIA & VIDEOT */
+    .photo-grid, .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
+    .photo-img-wrap, .video-img-wrap { width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative; background: #000; }
+    .photo-card img, .video-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+    .photo-card:hover img, .video-card:hover img { transform: scale(1.1); }
+    .photo-info, .video-info { padding: 15px; font-weight: 700; font-size: 1rem; text-align: center; color: #1c2b3a; background: #fff; border-top: 1px solid #f0f0f0; }
+    
+    /* VIDEO PLAY ICON */
+    .play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: rgba(0, 168, 157, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2; color: #fff; font-size: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
 
     /* LIGHTBOX */
     .lightbox { position: fixed; inset: 0; background: rgba(28, 43, 58, 0.98); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; transition: opacity 0.3s ease; }
     .lightbox.active { display: flex; }
-    .lightbox-content { position: relative; width: 100%; max-width: 1000px; border-radius: 15px; overflow: hidden; border: 5px solid #fff; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
+    .lightbox-content { position: relative; width: 100%; max-width: 1000px; border-radius: 15px; overflow: hidden; border: 5px solid #fff; box-shadow: 0 30px 60px rgba(0,0,0,0.5); background: #000; }
     .lightbox-close { position: fixed; top: 20px; right: 20px; color: #fff; font-size: 50px; cursor: pointer; background: none; border: none; z-index: 1001; line-height: 1; }
     .lightbox-caption { position: fixed; bottom: 20px; left: 0; right: 0; color: #fff; text-align: center; font-weight: 700; font-size: 1.4rem; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
     
@@ -65,7 +66,7 @@
   </nav>
 
   <header class="page-header">
-    <div class="container"><h1 class="page-title">Galleria</h1><p>Kaikki kuvat ovat klikattavissa suuremmaksi.</p></div>
+    <div class="container"><h1 class="page-title">Galleria</h1><p>Tutustu kohteisiimme kuvien ja videoiden muodossa.</p></div>
   </header>
 
   <main class="container">
@@ -74,19 +75,23 @@
       <div id="ba-loader" class="loader">Ladataan kohteita...</div>
       <div id="ba-container" class="ba-grid"></div>
     </section>
+    
     <section class="section" style="border-top: 1px solid #e8edf3;">
       <h2 class="section-title">Kuvia kohteista</h2>
       <div id="photo-loader" class="loader">Ladataan galleriaa...</div>
       <div id="photo-container" class="photo-grid"></div>
     </section>
+
+    <section class="section" style="border-top: 1px solid #e8edf3;">
+      <h2 class="section-title">Videot</h2>
+      <div id="video-loader" class="loader">Ladataan videoita...</div>
+      <div id="video-container" class="video-grid"></div>
+    </section>
   </main>
 
-  <!-- LIGHTBOX -->
   <div id="lightbox" class="lightbox">
     <button class="lightbox-close">&times;</button>
-    <div id="lb-content-wrap" class="lightbox-content">
-      <!-- Tähän injektoidaan joko img tai slider -->
-    </div>
+    <div id="lb-content-wrap" class="lightbox-content"></div>
     <div id="lightbox-text" class="lightbox-caption"></div>
   </div>
 
@@ -94,28 +99,13 @@
     const REPO = 'tomisankman/Pintalux';
     const baContainer = document.getElementById('ba-container');
     const photoContainer = document.getElementById('photo-container');
+    const videoContainer = document.getElementById('video-container');
     const lightbox = document.getElementById('lightbox');
     const lbWrap = document.getElementById('lb-content-wrap');
     const lbText = document.getElementById('lightbox-text');
 
-    // Avaa lightbox tavalliselle kuvalle
-    function openPhoto(src, text) {
-      lbWrap.innerHTML = `<img src="${src}" style="width:100%; display:block;">`;
-      lbText.innerText = text;
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    // Avaa lightbox sliderille
-    function openSlider(before, after, text) {
-      lbWrap.innerHTML = `
-        <div class="ba-slider-wrap lb-slider">
-          <div class="ba-img-before"><img src="${before}" alt="Ennen"></div>
-          <div class="ba-img-after"><img src="${after}" alt="Jälkeen"></div>
-          <div class="ba-divider"></div><div class="ba-handle">↔</div>
-          <span class="ba-label ba-label-before">Ennen</span><span class="ba-label ba-label-after">Jälkeen</span>
-        </div>
-      `;
+    function openLightbox(content, text) {
+      lbWrap.innerHTML = content;
       lbText.innerText = text;
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -124,16 +114,17 @@
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
         lightbox.classList.remove('active');
+        lbWrap.innerHTML = ''; // Pysäytä video
         document.body.style.overflow = 'auto';
       }
     });
 
     async function loadAll() {
       try {
-        const response = await fetch(`https://api.github.com/repos/${REPO}/contents/images/ennen-jalkeen`);
-        const baFiles = await response.json();
+        // 1. ENNEN & JÄLKEEN
+        const baResp = await fetch(`https://api.github.com/repos/${REPO}/contents/images/ennen-jalkeen`);
+        const baFiles = await baResp.json();
         document.getElementById('ba-loader').style.display = 'none';
-        
         const pairs = {};
         baFiles.forEach(f => {
           if (f.type !== 'file' || f.name.startsWith('.')) return;
@@ -144,53 +135,55 @@
           if (isBefore) pairs[base].before = f.download_url;
           if (isAfter) pairs[base].after = f.download_url;
         });
-
         Object.keys(pairs).forEach(key => {
           const pair = pairs[key];
           const parts = key.split(/[_-]/);
           const caption = (parts[1] || key).replace(/-/g, ' ');
           const card = document.createElement('div');
           card.className = 'ba-card';
-          
-          // Jos toinen kuva puuttuu, näytetään vain staattinen kuva
           if (!pair.before || !pair.after) {
-            const singleSrc = pair.before || pair.after;
-            card.innerHTML = `
-              <div class="photo-img-wrap"><img src="${singleSrc}" style="width:100%; height:100%; object-fit:cover;"></div>
-              <div class="ba-caption"><span class="ba-caption-text">${caption}</span><span style="font-size:0.85rem;color:#6b7a8d;">${parts[0] || 'Satakunta'}</span></div>
-            `;
-            card.onclick = () => openPhoto(singleSrc, caption);
+            const src = pair.before || pair.after;
+            card.innerHTML = `<div class="photo-img-wrap"><img src="${src}"></div><div class="ba-caption"><span class="ba-caption-text">${caption}</span><span style="font-size:0.85rem;color:#6b7a8d;">${parts[0] || 'Satakunta'}</span></div>`;
+            card.onclick = () => openLightbox(`<img src="${src}" style="width:100%">`, caption);
           } else {
-            card.innerHTML = `
-              <div class="ba-slider-wrap">
-                <div class="ba-img-before"><img src="${pair.before}"></div>
-                <div class="ba-img-after"><img src="${pair.after}"></div>
-                <div class="ba-divider"></div><div class="ba-handle">↔</div>
-                <span class="ba-label ba-label-before">Ennen</span><span class="ba-label ba-label-after">Jälkeen</span>
-              </div>
-              <div class="ba-caption"><span class="ba-caption-text">${caption}</span><span style="font-size:0.85rem;color:#6b7a8d;">${parts[0] || 'Satakunta'}</span></div>
-            `;
-            card.onclick = () => openSlider(pair.before, pair.after, caption);
+            card.innerHTML = `<div class="ba-slider-wrap"><div class="ba-img-before"><img src="${pair.before}"></div><div class="ba-img-after"><img src="${pair.after}"></div><div class="ba-divider"></div><div class="ba-handle">↔</div><span class="ba-label ba-label-before">Ennen</span><span class="ba-label ba-label-after">Jälkeen</span></div><div class="ba-caption"><span class="ba-caption-text">${caption}</span><span style="font-size:0.85rem;color:#6b7a8d;">${parts[0] || 'Satakunta'}</span></div>`;
+            card.onclick = () => openLightbox(`<div class="ba-slider-wrap lb-slider"><div class="ba-img-before"><img src="${pair.before}"></div><div class="ba-img-after"><img src="${pair.after}"></div><div class="ba-divider"></div><div class="ba-handle">↔</div><span class="ba-label ba-label-before">Ennen</span><span class="ba-label ba-label-after">Jälkeen</span></div>`, caption);
           }
           baContainer.appendChild(card);
         });
 
+        // 2. GALLERIA
         const photoResp = await fetch(`https://api.github.com/repos/${REPO}/contents/images/galleria`);
         const photoFiles = await photoResp.json();
         document.getElementById('photo-loader').style.display = 'none';
-        
         photoFiles.forEach(f => {
           if (f.type !== 'file' || f.name.startsWith('.')) return;
           const caption = f.name.split('.')[0].replace(/[_-]/g, ' ');
           const card = document.createElement('div');
           card.className = 'photo-card';
           card.innerHTML = `<div class="photo-img-wrap"><img src="${f.download_url}"></div><div class="photo-info">${caption}</div>`;
-          card.onclick = () => openPhoto(f.download_url, caption);
+          card.onclick = () => openLightbox(`<img src="${f.download_url}" style="width:100%">`, caption);
           photoContainer.appendChild(card);
         });
 
-        // Slider-liike (toimii sekä gridissä että lightboxissa)
-        const handleMove = (e) => {
+        // 3. VIDEOT
+        const videoResp = await fetch(`https://raw.githubusercontent.com/${REPO}/main/videot.txt`);
+        const videoText = await videoResp.text();
+        document.getElementById('video-loader').style.display = 'none';
+        const videoUrls = videoText.split('\n').filter(url => url.trim() !== '');
+        videoUrls.forEach(url => {
+          const videoId = url.split('v=')[1]?.split('&')[0];
+          if (!videoId) return;
+          const thumb = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+          const card = document.createElement('div');
+          card.className = 'video-card';
+          card.innerHTML = `<div class="video-img-wrap"><img src="${thumb}"><div class="play-icon">▶</div></div><div class="video-info">Katso video kohteesta</div>`;
+          card.onclick = () => openLightbox(`<iframe width="100%" height="500" src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`, "Video kohteesta");
+          videoContainer.appendChild(card);
+        });
+
+        // Slider-liike
+        const move = (e) => {
           const slider = e.target.closest('.ba-slider-wrap');
           if (!slider) return;
           let rect = slider.getBoundingClientRect();
@@ -200,9 +193,8 @@
           slider.querySelector('.ba-divider').style.left = perc + '%';
           slider.querySelector('.ba-handle').style.left = perc + '%';
         };
-
-        document.addEventListener('mousemove', handleMove);
-        document.addEventListener('touchmove', handleMove);
+        document.addEventListener('mousemove', move);
+        document.addEventListener('touchmove', move);
 
       } catch (e) { console.error(e); }
     }
