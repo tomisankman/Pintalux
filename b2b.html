@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PintaLux B2B – ROI-laskuri ja ratkaisut yrityksille</title>
+  <meta name="description" content="PintaLuxin B2B-ratkaisut yrityksille. Laske säästöt ROI-laskurilla ja tehosta kiinteistösi ylläpitoa nanopinnoituksella." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #1c2b3a;
+      background: #ffffff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── DESIGN TOKENS ── */
+    :root {
+      --navy:   #1c2b3a;
+      --navy2:  #243447;
+      --teal:   #00a89d;
+      --teal2:  #00c4b8;
+      --orange: #e8622a;
+      --light:  #f4f7fa;
+      --mid:    #e8edf3;
+      --gray:   #6b7a8d;
+      --white:  #ffffff;
+      --radius: 14px;
+      --shadow: 0 4px 24px rgba(28,43,58,.10);
+      --shadow-lg: 0 12px 48px rgba(28,43,58,.15);
+    }
+
+    /* ── UTILITY ── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .section-sm { padding: 72px 0; }
+    .text-teal { color: var(--teal); }
+    .text-orange { color: var(--orange); }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--teal); background: rgba(0,168,157,.1); border: 1px solid rgba(0,168,157,.25);
+      padding: 4px 12px; border-radius: 100px;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 800; line-height: 1.15; letter-spacing: -.02em;
+      color: var(--navy);
+    }
+    .section-sub {
+      font-size: 1.05rem; color: var(--gray); max-width: 600px;
+      margin-top: 16px; line-height: 1.7;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 10px;
+      font-weight: 700; font-size: .95rem; cursor: pointer;
+      transition: transform .15s, box-shadow .15s, background .15s;
+      border: none; text-decoration: none;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--orange); color: #fff;
+      box-shadow: 0 4px 20px rgba(232,98,42,.35);
+    }
+    .btn-primary:hover { background: #d4541f; box-shadow: 0 8px 28px rgba(232,98,42,.4); }
+    .btn-outline {
+      background: transparent; color: var(--navy);
+      border: 2px solid var(--mid);
+    }
+    .btn-outline:hover { border-color: var(--navy); background: var(--light); }
+    .btn-teal {
+      background: var(--teal); color: #fff;
+      box-shadow: 0 4px 20px rgba(0,168,157,.3);
+    }
+    .btn-teal:hover { background: #008f85; }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--mid);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px; gap: 32px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800; font-size: 1.15rem; color: var(--navy);
+    }
+    .nav-logo-mark {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: var(--navy); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: .9rem; letter-spacing: -.03em;
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 4px; list-style: none;
+    }
+    .nav-links a {
+      padding: 6px 14px; border-radius: 8px;
+      font-size: .9rem; font-weight: 500; color: var(--gray);
+      transition: color .15s, background .15s;
+    }
+    .nav-links a:hover { color: var(--navy); background: var(--light); }
+    .nav-cta { display: flex; align-items: center; gap: 10px; }
+    .nav-phone {
+      font-size: .9rem; font-weight: 600; color: var(--navy);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .nav-phone svg { color: var(--teal); }
+    .nav-hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      padding: 8px; border-radius: 8px; color: var(--navy);
+    }
+    .mobile-menu {
+      display: none; padding: 16px 24px 24px;
+      border-top: 1px solid var(--mid);
+      background: #fff;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a {
+      display: block; padding: 12px 0;
+      font-size: 1rem; font-weight: 500; color: var(--navy);
+      border-bottom: 1px solid var(--mid);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-cta { margin-top: 16px; }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--light); padding: 80px 0 40px; border-top: 1px solid var(--mid); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 64px; margin-bottom: 64px; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; margin-bottom: 20px; }
+    .footer-logo-mark { width: 38px; height: 38px; border-radius: 10px; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+    .footer-desc { color: var(--gray); font-size: .95rem; margin-bottom: 24px; max-width: 320px; }
+    .footer-contact { display: flex; flex-direction: column; gap: 10px; font-size: .9rem; font-weight: 600; }
+    .footer-contact a { color: var(--gray); font-size: .9rem; transition: color .15s; }
+    .footer-contact a:hover { color: var(--teal); }
+    .footer-col-title { font-weight: 700; font-size: .9rem; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 24px; color: var(--navy); }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a { color: var(--gray); font-size: .95rem; transition: color .15s; }
+    .footer-links a:hover { color: var(--teal); }
+    .footer-bottom { border-top: 1px solid var(--mid); padding-top: 32px; display: flex; justify-content: space-between; align-items: center; font-size: .85rem; color: var(--gray); }
+    .footer-seo { font-size: .75rem; opacity: .6; }
+
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: .9rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .form-control { width: 100%; padding: 12px 16px; border: 1px solid var(--mid); border-radius: 8px; font-size: 1rem; font-family: inherit; transition: border-color .15s; }
+    .form-control:focus { outline: none; border-color: var(--teal); }
+
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta .nav-phone { display: none; }
+      .nav-hamburger { display: block; }
+      .footer-grid { grid-template-columns: 1fr; gap: 48px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.png" alt="PintaLux Oy Logo" style="height: 50px; width: auto;" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#pl-palvelut">Palvelut</a></li>
+        <li><a href="miksi-pintalux.html">Miksi PintaLux?</a></li>
+        <li><a href="hintalaskuri.html">Hintalaskuri</a></li>
+        <li><a href="galleria.html">Galleria</a></li>
+        <li><a href="index.html#pl-polku">Asiakaspolku</a></li>
+        <li><a href="index.html#pl-yhteys">Yhteystiedot</a></li>
+      </ul>
+      <div class="nav-cta">
+        <span class="nav-phone">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          045 800 3773
+        </span>
+        <a href="index.html#pl-yhteys" class="btn btn-primary">Varaa kartoitus</a>
+      </div>
+      <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Valikko">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html#pl-palvelut" onclick="closeMenu()">Palvelut</a>
+    <a href="miksi-pintalux.html" onclick="closeMenu()">Miksi PintaLux?</a>
+    <a href="hintalaskuri.html">Hintalaskuri</a>
+    <a href="galleria.html">Galleria</a>
+    <a href="index.html#pl-polku" onclick="closeMenu()">Asiakaspolku</a>
+    <a href="index.html#pl-yhteys" onclick="closeMenu()">Yhteystiedot</a>
+    <a href="tel:0458003773" style="color:var(--teal)">📞 045 800 3773</a>
+    <div class="mobile-cta">
+      <a href="index.html#pl-yhteys" class="btn btn-primary" style="width:100%;justify-content:center" onclick="closeMenu()">Varaa kartoitus</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title">PintaLux B2B – ROI-laskuri ja ratkaisut yrityksille</h1>
+      <p class="section-sub">Laske, miten PintaLuxin nanopinnoitus ja huoltopalvelut voivat säästää yrityksesi aikaa ja rahaa. Optimoi kiinteistösi ylläpito ja paranna hygieniaa.</p>
+
+      <!-- ROI Calculator Section -->
+      <div class="roi-calculator-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:60px;">
+        <div class="roi-inputs">
+          <h2 style="font-size:1.5rem; margin-bottom:30px;">Investointi & Kapasiteetti</h2>
+          <div class="form-group">
+            <label for="huoneet">Huonemäärä / Tilojen määrä (kpl)</label>
+            <input type="number" id="huoneet" value="100" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="kayttoaste">Käyttöaste (%)</label>
+            <input type="number" id="kayttoaste" value="70" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="pinnoitushinta">Pinnoitushinta / yksikkö (€)</label>
+            <input type="number" id="pinnoitushinta" value="340" class="form-control" />
+          </div>
+
+          <h2 style="font-size:1.5rem; margin-top:40px; margin-bottom:30px;">Operatiivinen Siivous</h2>
+          <div class="form-group">
+            <label for="aika-ennen">Siivousaika ENNEN (min/yksikkö)</label>
+            <input type="number" id="aika-ennen" value="22" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="aika-jalkeen">Siivousaika JÄLKEEN (min/yksikkö)</label>
+            <input type="number" id="aika-jalkeen" value="18" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="tuntihinta">Siivouksen tuntihinta (€/h)</label>
+            <input type="number" id="tuntihinta" value="28" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="kemia-kulu">Kemikaalikustannus / yksikkö / vuosi (€)</label>
+            <input type="number" id="kemia-kulu" value="100" class="form-control" />
+          </div>
+
+          <h2 style="font-size:1.5rem; margin-top:40px; margin-bottom:30px;">Huolto & Elinkaari</h2>
+          <div class="form-group">
+            <label for="remontti-hinta">Vältetty remontin hinta (€/yksikkö)</label>
+            <input type="number" id="remontti-hinta" value="150" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="remontti-vali">Uusimisväli ilman pinnoitusta (vuotta)</label>
+            <input type="number" id="remontti-vali" value="2" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="huolto-hinta">PintaLux-huoltokäsittely hinta (€/yksikkö)</label>
+            <input type="number" id="huolto-hinta" value="100" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="huolto-vali">Huoltoväli pinnoitettuna (vuotta)</label>
+            <input type="number" id="huolto-vali" value="3" class="form-control" />
+          </div>
+        </div>
+
+        <div class="roi-results" style="background:#f4f7fa; padding:40px; border-radius:20px;">
+          <h2 style="font-size:1.5rem; margin-bottom:30px;">Analyysin yhteenveto</h2>
+          <p style="font-size:1.1rem; color:var(--gray);">Alkuinvestoinnin takaisinmaksu:</p>
+          <p id="takaisinmaksu" style="font-size:3rem; font-weight:800; color:var(--orange); margin-top:10px;">0 kk</p>
+
+          <p style="font-size:1.1rem; color:var(--gray); margin-top:30px;">Alkuinvestointi:</p>
+          <p id="alkuinvestointi" style="font-size:1.8rem; font-weight:700; color:var(--navy); margin-top:5px;">0 €</p>
+
+          <p style="font-size:1.1rem; color:var(--gray); margin-top:30px;">Vuotuinen säästöpotentiaali:</p>
+          <p id="vuotuinen-saasto" style="font-size:1.8rem; font-weight:700; color:var(--teal); margin-top:5px;">0 €</p>
+
+          <h3 style="font-size:1.2rem; margin-top:40px; margin-bottom:20px;">Säästöjen erittely (vuosi)</h3>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+            <li style="display:flex; justify-content:space-between; font-size:.95rem;">Työaikasäästöt: <span id="tyoaika-saasto">0 €</span></li>
+            <li style="display:flex; justify-content:space-between; font-size:.95rem;">Kemikaalisäästöt: <span id="kemia-saasto">0 €</span></li>
+            <li style="display:flex; justify-content:space-between; font-size:.95rem;">Vältetyt remontit: <span id="remontti-saasto">0 €</span></li>
+            <li style="display:flex; justify-content:space-between; font-size:.95rem;">Huoltoinvestointi: <span id="huolto-investointi">0 €</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- B2B Benefits Section -->
+      <div class="b2b-benefits" style="margin-top:80px;">
+        <h2 class="section-title" style="text-align:center; margin-bottom:40px;">Miksi yrityksesi hyötyy PintaLuxista?</h2>
+        <div class="benefits-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:30px;">
+          <div class="benefit-card" style="background:#fff; border:1px solid var(--mid); border-radius:14px; padding:30px; box-shadow:var(--shadow);">
+            <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:15px;">Hotellit & Majoitusliikkeet</h3>
+            <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+              <li style="display:flex; align-items:flex-start; gap:10px;"><span style="color:var(--teal); font-weight:bold;">✓</span> <span><strong>Siivousajan optimointi:</strong> Jopa 80% vähemmän aikaa per huone.</span></li>
+              <li style="display:flex; align-items:flex-start; gap:10px;"><span style="color:var(--teal); font-weight:bold;">✓</span> <span><strong>Asiakastyytyväisyys:</strong> Puhtaat, raikkaat ja hygieeniset tilat.</span></li>
+              <li style="display:flex; align-items:flex-start; gap:10px;"><span style="color:var(--teal); font-weight:bold;">✓</span> <span><strong>Parempi hygienia:</strong> Nanopinnoite estää bakteerien ja homeen kasvun.</span></li>
+            </ul>
+          </div>
+          <div class="benefit-card" style="background:#fff; border:1px solid var(--mid); border-radius:14px; padding:30px; box-shadow:var(--shadow);">
+            <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:15px;">Toimistot & Julkiset tilat</h3>
+            <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+              <li style="display:flex; align-items:flex-start; gap:10px;"><span style="color:var(--teal); font-weight:bold;">✓</span> <span><strong>Lattioiden elinkaari:</strong> Vähentää koneellisen vahauksen tarvetta.</span></li>
+              <li style="display:flex; align-items:flex-start; gap:10px;"><span style="color:var(--teal); font-weight:bold;">✓</span> <span><strong>Edustavuus:</strong> Pinnat näyttävät uusilta pidempään.</span></li>
+              <li style="display:flex; align-items:flex-start; gap:10px;"><span style="color:var(--teal); font-weight:bold;">✓</span> <span><strong>Kustannustehokkuus:</strong> Vähemmän ylläpitokuluja.</span></li>
+            </ul>
+          </div>
+          <div class="benefit-card" style="background:#fff; border:1px solid var(--mid); border-radius:14px; padding:30px; box-shadow:var(--shadow);">
+            <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:15px;">Kiinteistömanagerit & Isännöitsijät</h3>
+            <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+              <li style="display:flex; align-items:flex-start; gap:10px;"><span style="color:var(--teal); font-weight:bold;">✓</span> <span><strong>Ennakoiva huolto:</strong> Siirtää kalliita remontteja vuosilla.</span></li>
+              <li style="display:flex; align-items:flex-start; gap:10px;"><span style="color:var(--teal); font-weight:bold;">✓</span> <span><strong>Budjetointi:</strong> Selkeät säästöt huoltokustannuksissa.</span></li>
+              <li style="display:flex; align-items:flex-start; gap:10px;"><span style="color:var(--teal); font-weight:bold;">✓</span> <span><strong>Asuntojen arvo:</strong> Ylläpitää ja nostaa kiinteistöjen arvoa.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="contact-cta" style="text-align:center; margin-top:80px;">
+        <h2 class="section-title">Kiinnostuitko? Ota yhteyttä!</h2>
+        <p class="section-sub">Lasketaan yhdessä, miten paljon yrityksesi voi säästää PintaLuxin avulla.</p>
+        <a href="index.html#pl-yhteys" class="btn btn-primary" style="margin-top:30px; padding:18px 40px; font-size:1.1rem;">Varaa maksuton kartoitus →</a>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <img src="images/logo.png" alt="PintaLux Oy Logo" style="height: 60px; width: auto; margin-bottom: 10px;" />
+        </div>
+        <p class="footer-desc">
+          Kylpyhuonehuollot, nanopinnoitukset, pintaremontit ja siivouspalvelut
+          Satakunnassa ja lähikunnissa.
+        </p>
+        <div class="footer-contact">
+          <a href="tel:0458003773">📞 045 800 3773</a>
+          <a href="mailto:info@pintalux.fi">✉ info@pintalux.fi</a>
+          <a href="https://wa.me/358458003773" target="_blank" rel="noopener">💬 WhatsApp</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Palvelut</div>
+        <ul class="footer-links">
+          <li><a href="index.html#pl-palvelut">Kylpyhuonehuolto</a></li>
+          <li><a href="index.html#pl-palvelut">Nanopinnoitus</a></li>
+          <li><a href="index.html#pl-palvelut">Kylpyhuoneremontit</a></li>
+          <li><a href="index.html#pl-palvelut">Talojen maalaukset</a></li>
+          <li><a href="index.html#pl-palvelut">Siivouspalvelut</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Sivukartta</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Etusivu</a></li>
+          <li><a href="miksi-pintalux.html">Miksi PintaLux?</a></li>
+          <li><a href="hintalaskuri.html">Hintalaskuri</a></li>
+          <li><a href="galleria.html">Galleria</a></li>
+          <li><a href="index.html#pl-polku">Asiakaspolku</a></li>
+          <li><a href="index.html#pl-yhteys">Ota yhteyttä</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 PintaLux Oy · Y-tunnus 3381133-6</p>
+      <p class="footer-seo">Kylpyhuonehuolto Pori · Nanopinnoitus · Pintaremontti Satakunta · Siivouspalvelu Pori</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+  }
+
+  // ROI Calculator Logic
+  const inputs = document.querySelectorAll('.roi-inputs input');
+  inputs.forEach(input => input.addEventListener('input', calculateROI));
+
+  function calculateROI() {
+    const huoneet = parseFloat(document.getElementById('huoneet').value) || 0;
+    const kayttoaste = parseFloat(document.getElementById('kayttoaste').value) || 0;
+    const pinnoitushinta = parseFloat(document.getElementById('pinnoitushinta').value) || 0;
+    const aikaEnnen = parseFloat(document.getElementById('aika-ennen').value) || 0;
+    const aikaJalkeen = parseFloat(document.getElementById('aika-jalkeen').value) || 0;
+    const tuntihinta = parseFloat(document.getElementById('tuntihinta').value) || 0;
+    const kemiaKulu = parseFloat(document.getElementById('kemia-kulu').value) || 0;
+    const remonttiHinta = parseFloat(document.getElementById('remontti-hinta').value) || 0;
+    const remonttiVali = parseFloat(document.getElementById('remontti-vali').value) || 0;
+    const huoltoHinta = parseFloat(document.getElementById('huolto-hinta').value) || 0;
+    const huoltoVali = parseFloat(document.getElementById('huolto-vali').value) || 0;
+
+    // Calculations
+    const alkuinvestointi = huoneet * pinnoitushinta;
+
+    const siivousaikaSaastoMin = (aikaEnnen - aikaJalkeen) * huoneet * (kayttoaste / 100) * 365 / 7; // Per viikko, approx
+    const siivousaikaSaastoEuro = (siivousaikaSaastoMin / 60) * tuntihinta;
+
+    const kemiaSaasto = kemiaKulu * huoneet * 0.6; // Oletus 60% säästö kemikaaleissa
+
+    let remonttiSaasto = 0;
+    if (remonttiVali > 0) {
+      remonttiSaasto = (huoneet * remonttiHinta) / remonttiVali;
+    }
+
+    let huoltoInvestointi = 0;
+    if (huoltoVali > 0) {
+      huoltoInvestointi = (huoneet * huoltoHinta) / huoltoVali;
+    }
+
+    const vuotuinenSaasto = siivousaikaSaastoEuro + kemiaSaasto + remonttiSaasto - huoltoInvestointi;
+
+    let takaisinmaksu = 0;
+    if (vuotuinenSaasto > 0) {
+      takaisinmaksu = (alkuinvestointi / vuotuinenSaasto) * 12;
+    }
+
+    // Update UI
+    document.getElementById('takaisinmaksu').textContent = `${takaisinmaksu.toFixed(1)} kk`;
+    document.getElementById('alkuinvestointi').textContent = `${alkuinvestointi.toFixed(0)} €`;
+    document.getElementById('vuotuinen-saasto').textContent = `${vuotuinenSaasto.toFixed(0)} €`;
+    document.getElementById('tyoaika-saasto').textContent = `${siivousaikaSaastoEuro.toFixed(0)} €`;
+    document.getElementById('kemia-saasto').textContent = `${kemiaSaasto.toFixed(0)} €`;
+    document.getElementById('remontti-saasto').textContent = `${remonttiSaasto.toFixed(0)} €`;
+    document.getElementById('huolto-investointi').textContent = `${huoltoInvestointi.toFixed(0)} €`;
+  }
+
+  calculateROI(); // Initial calculation
+
+  // Mobile menu toggle
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+  }
+</script>
+</body>
+</html>
