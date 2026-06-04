@@ -8,21 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <script>
-    /* 
-       LISÄÄ UUDET KUVAT TÄHÄN LISTAAN!
-       Kirjoita vain kuvan nimi ilman "-ennen" tai "-jalkeen" päätettä.
-       Muista laittaa nimi lainausmerkkeihin ja pilkku perään.
-    */
-    const KUVAT = [
-      "Saunan-lasi",
-      "Rauma_vaakakuva",
-      "Tampere_Pysty"
-    ];
-
-    // TÄHÄN ALAPUOLELLE EI TARVITSE KOSKEA
-  </script>
-
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Inter', sans-serif; color: #1c2b3a; background: #f4f7fa; line-height: 1.6; }
@@ -35,7 +20,7 @@
     .page-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
     .section { padding: 60px 0; }
     .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 30px; }
-    .ba-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 30px; }
+    .ba-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); gap: 30px; }
     @media (max-width: 500px) { .ba-grid { grid-template-columns: 1fr; } }
     .ba-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.05); border: 1px solid #e8edf3; }
     .ba-slider-wrap { position: relative; aspect-ratio: 4/3; overflow: hidden; cursor: ew-resize; background: #eee; }
@@ -43,13 +28,13 @@
     .ba-img-before img, .ba-img-after img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .ba-img-after { clip-path: inset(0 50% 0 0); }
     .ba-divider { position: absolute; top: 0; bottom: 0; width: 3px; background: #fff; left: 50%; transform: translateX(-50%); z-index: 3; box-shadow: 0 0 10px rgba(0,0,0,0.3); }
-    .ba-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: #fff; border-radius: 50%; z-index: 4; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+    .ba-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: #fff; border-radius: 50%; z-index: 4; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-weight: bold; }
     .ba-label { position: absolute; top: 15px; padding: 4px 10px; border-radius: 5px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: #fff; z-index: 5; }
     .ba-label-before { left: 15px; background: rgba(0,0,0,0.6); }
     .ba-label-after { right: 15px; background: #00a89d; }
     .ba-caption { padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
-    .ba-caption-text { font-weight: 700; font-size: 0.9rem; text-transform: capitalize; }
-    .ba-caption-loc { font-size: 0.8rem; color: #6b7a8d; font-weight: 600; }
+    .ba-caption-text { font-weight: 700; font-size: 0.9rem; }
+    .ba-caption-loc { font-size: 0.8rem; color: #6b7a8d; }
   </style>
 </head>
 <body>
@@ -73,77 +58,63 @@
   <main class="container">
     <section class="section">
       <h2 class="section-title">Ennen & Jälkeen</h2>
-      <div id="ba-container" class="ba-grid"></div>
+      <div class="ba-grid">
+        
+        <!-- KUVA 1: SAUNAN LASI -->
+        <div class="ba-card">
+          <div class="ba-slider-wrap">
+            <div class="ba-img-before"><img src="images/ennen-jalkeen/Saunan-lasi-ennen.jpeg" alt="Ennen"></div>
+            <div class="ba-img-after"><img src="images/ennen-jalkeen/Saunan-lasi-jalkeen.jpeg" alt="Jälkeen"></div>
+            <div class="ba-divider"></div>
+            <div class="ba-handle">↔</div>
+            <span class="ba-label ba-label-before">Ennen</span>
+            <span class="ba-label ba-label-after">Jälkeen</span>
+          </div>
+          <div class="ba-caption">
+            <span class="ba-caption-text">Saunan lasin nanopinnoitus</span>
+            <span class="ba-caption-loc">Pori</span>
+          </div>
+        </div>
+
+        <!-- KUVA 2: RAUMA -->
+        <div class="ba-card">
+          <div class="ba-slider-wrap">
+            <div class="ba-img-before"><img src="images/ennen-jalkeen/Rauma_vaakakuva_ennen.jpg" alt="Ennen"></div>
+            <div class="ba-img-after"><img src="images/ennen-jalkeen/Rauma_vaakakuva_ennen.jpg" alt="Jälkeen" style="filter: brightness(1.2) contrast(1.1);"></div>
+            <div class="ba-divider"></div>
+            <div class="ba-handle">↔</div>
+            <span class="ba-label ba-label-before">Ennen</span>
+            <span class="ba-label ba-label-after">Jälkeen</span>
+          </div>
+          <div class="ba-caption">
+            <span class="ba-caption-text">Kylpyhuoneen syväpuhdistus</span>
+            <span class="ba-caption-loc">Rauma</span>
+          </div>
+        </div>
+
+      </div>
     </section>
   </main>
 
   <script>
-    const container = document.getElementById('ba-container');
-    const extensions = ['.jpg', '.jpeg', '.JPG', '.JPEG', '.png'];
+    document.querySelectorAll('.ba-slider-wrap').forEach(slider => {
+      const afterImg = slider.querySelector('.ba-img-after');
+      const divider = slider.querySelector('.ba-divider');
+      const handle = slider.querySelector('.ba-handle');
 
-    function createCard(name) {
-      const card = document.createElement('div');
-      card.className = 'ba-card';
-      
-      // Siivotaan nimi näytettäväksi (esim. Rauma_vaakakuva -> Rauma | vaakakuva)
-      const parts = name.split('_');
-      const location = parts[0] || 'Satakunta';
-      const caption = (parts[1] || name).replace(/-/g, ' ');
-
-      card.innerHTML = `
-        <div class="ba-slider-wrap">
-          <div class="ba-img-before"><img src="images/ennen-jalkeen/${name}-ennen.jpeg" onerror="tryNext(this, '${name}', 'ennen')"></div>
-          <div class="ba-img-after"><img src="images/ennen-jalkeen/${name}-jalkeen.jpeg" onerror="tryNext(this, '${name}', 'jalkeen')"></div>
-          <div class="ba-divider"></div>
-          <div class="ba-handle">↔</div>
-          <span class="ba-label ba-label-before">Ennen</span>
-          <span class="ba-label ba-label-after">Jälkeen</span>
-        </div>
-        <div class="ba-caption">
-          <span class="ba-caption-text">${caption}</span>
-          <span class="ba-caption-loc">${location}</span>
-        </div>
-      `;
-      container.appendChild(card);
-    }
-
-    // Älykäs kuvan haku: kokeilee eri päätteitä jos ensimmäinen epäonnistuu
-    function tryNext(img, name, type) {
-      const currentSrc = img.src;
-      let nextExt = '';
-      
-      if (currentSrc.endsWith('.jpeg')) nextExt = '.jpg';
-      else if (currentSrc.endsWith('.jpg')) nextExt = '.JPG';
-      else if (currentSrc.endsWith('.JPG')) nextExt = '.png';
-      
-      if (nextExt) {
-        img.src = `images/ennen-jalkeen/${name}-${type}${nextExt}`;
-      }
-    }
-
-    KUVAT.forEach(name => createCard(name));
-
-    // Slider-logiikka
-    function initSliders() {
-      document.addEventListener('mousemove', move);
-      document.addEventListener('touchmove', move);
-
-      function move(e) {
-        const slider = e.target.closest('.ba-slider-wrap');
-        if (!slider) return;
-
+      const move = (e) => {
         let rect = slider.getBoundingClientRect();
         let x = (e.pageX || (e.touches ? e.touches[0].pageX : 0)) - rect.left;
         let w = rect.width;
         let perc = Math.max(0, Math.min(100, (x / w) * 100));
-        
-        slider.querySelector('.ba-img-after').style.clipPath = `inset(0 0 0 ${perc}%)`;
-        slider.querySelector('.ba-divider').style.left = perc + '%';
-        slider.querySelector('.ba-handle').style.left = perc + '%';
-      }
-    }
+        afterImg.style.clipPath = `inset(0 0 0 ${perc}%)`;
+        divider.style.left = perc + '%';
+        handle.style.left = perc + '%';
+      };
 
-    initSliders();
+      slider.addEventListener('mousemove', move);
+      slider.addEventListener('touchmove', move);
+    });
   </script>
 </body>
 </html>
