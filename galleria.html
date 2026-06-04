@@ -21,9 +21,11 @@
 
     /* 
        2. KUVIA KOHTEISTA (Tavallinen galleria)
+       Lisää tähän tiedoston nimi juuri sellaisena kuin se on GitHubissa.
     */
     const KOHTEEKUVAT = [
-      "Pori_Saunan-lasit_jälkeen.jpeg"
+      "photo1.jpg",
+      "photo2.jpg"
     ];
   </script>
 
@@ -54,7 +56,7 @@
     .ba-caption { padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
     .ba-caption-text { font-weight: 700; font-size: 0.9rem; }
     .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-    .photo-card { background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e8edf3; transition: transform 0.2s; }
+    .photo-card { background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e8edf3; }
     .photo-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
     .photo-info { padding: 12px 15px; font-weight: 600; font-size: 0.85rem; text-align: center; color: #1c2b3a; }
   </style>
@@ -91,9 +93,10 @@
 
   <script>
     const baContainer = document.getElementById('ba-container');
+    const photoContainer = document.getElementById('photo-container');
     const exts = ['.jpeg', '.jpg', '.JPG', '.JPEG', '.png'];
 
-    // Älykäs kuvan haku, joka kokeilee eri yhdistelmiä
+    // 1. Ennen/Jälkeen -logiikka
     function smartLoad(img, name, type, index = 0) {
       const variants = [
         `images/ennen-jalkeen/${name}-${type}`,
@@ -101,10 +104,8 @@
         `images/ennen-jalkeen/${name}-${type === 'jalkeen' ? 'jälkeen' : type}`,
         `images/ennen-jalkeen/${name}_${type === 'jalkeen' ? 'jälkeen' : type}`
       ];
-
       let variantIdx = Math.floor(index / exts.length);
       let extIdx = index % exts.length;
-
       if (variantIdx < variants.length) {
         img.src = variants[variantIdx] + exts[extIdx];
         img.onerror = () => smartLoad(img, name, type, index + 1);
@@ -117,7 +118,6 @@
       const parts = name.split(/[_-]/);
       const location = parts[0] || 'Satakunta';
       const caption = (parts[1] || name).replace(/-/g, ' ');
-
       card.innerHTML = `
         <div class="ba-slider-wrap">
           <div class="ba-img-before"><img src="" alt="Ennen"></div>
@@ -127,17 +127,14 @@
           <span class="ba-label ba-label-before">Ennen</span>
           <span class="ba-label ba-label-after">Jälkeen</span>
         </div>
-        <div class="ba-caption">
-          <span class="ba-caption-text">${caption}</span>
-          <span class="ba-caption-loc" style="font-size: 0.8rem; color: #6b7a8d;">${location}</span>
-        </div>
+        <div class="ba-caption"><span class="ba-caption-text">${caption}</span><span style="font-size:0.8rem;color:#6b7a8d;">${location}</span></div>
       `;
       baContainer.appendChild(card);
       smartLoad(card.querySelector('.ba-img-before img'), name, 'ennen');
       smartLoad(card.querySelector('.ba-img-after img'), name, 'jalkeen');
     });
 
-    const photoContainer = document.getElementById('photo-container');
+    // 2. Galleria-logiikka
     KOHTEEKUVAT.forEach(fileName => {
       const card = document.createElement('div');
       card.className = 'photo-card';
@@ -146,6 +143,7 @@
       photoContainer.appendChild(card);
     });
 
+    // Slider-liike
     document.addEventListener('mousemove', (e) => {
       const slider = e.target.closest('.ba-slider-wrap');
       if (!slider) return;
