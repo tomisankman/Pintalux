@@ -806,10 +806,15 @@
     .contact-method-label { font-size: .75rem; color: var(--gray); text-transform: uppercase; letter-spacing: .07em; font-weight: 600; }
     .contact-method-value { font-size: .95rem; font-weight: 700; color: var(--navy); }
     .contact-area {
-      margin-top: 28px; padding: 16px 20px;
-      background: rgba(0,168,157,.06); border-radius: 12px;
-      border: 1px solid rgba(0,168,157,.2);
+      margin-top: 14px; /* Samanlainen väli kuin muilla */
+      padding: 16px 20px; 
+      background: var(--light); /* Sama solid color */
+      border-radius: 12px;
+      border: 1px solid var(--mid); /* Sama reuna */
       font-size: .9rem; color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
     .contact-area strong { color: var(--teal); }
 
@@ -1324,7 +1329,11 @@
           </a>
         </div>
         <div class="contact-area">
-          <strong>📍 Palvelualue:</strong> Satakunta ja lähialueet — Pori, Tampere, Rauma ja ympäristökunnat
+          <div class="contact-method-icon" style="background: rgba(0,168,157,0.1);">📍</div>
+          <div>
+            <div class="contact-method-label">Palvelualue</div>
+            <div class="contact-method-value" style="font-size: 0.85rem; font-weight: 600;">Satakunta ja lähialueet — Pori, Tampere, Rauma ja ympäristökunnat</div>
+          </div>
         </div>
       </div>
       <div>
