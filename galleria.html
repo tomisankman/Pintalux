@@ -54,8 +54,8 @@
     .lightbox-content { position: relative; width: 100%; max-width: 1000px; border-radius: 15px; overflow: hidden; border: 5px solid #fff; box-shadow: 0 30px 60px rgba(0,0,0,0.5); background: #000; display: flex; flex-direction: column; align-items: center; }
     .lightbox-close { position: fixed; top: 20px; right: 20px; color: #fff; font-size: 50px; cursor: pointer; background: none; border: none; z-index: 1001; line-height: 1; }
     .lightbox-caption { position: fixed; bottom: 20px; left: 0; right: 0; color: #fff; text-align: center; font-weight: 700; font-size: 1.4rem; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-    .lb-external-link { display: inline-block; margin-top: 15px; background: #00a89d; color: #fff; padding: 10px 20px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: background 0.2s; }
-    .lb-external-link:hover { background: #008f85; }
+    .lb-external-link { display: inline-block; margin-top: 15px; background: #00a89d; color: #fff; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 800; font-size: 1rem; transition: background 0.2s; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+    .lb-external-link:hover { background: #008f85; transform: scale(1.05); }
     
     .loader { text-align: center; padding: 40px; font-weight: 600; color: #6b7a8d; }
   </style>
@@ -94,8 +94,8 @@
     <button class="lightbox-close">&times;</button>
     <div class="lightbox-content">
       <div id="lb-content-wrap" style="width:100%; display:flex; justify-content:center;"></div>
-      <div id="lb-footer" style="padding: 15px; text-align:center; width:100%; background:#fff; display:none;">
-        <a id="lb-link" href="#" target="_blank" class="lb-external-link">Katso alkuperäinen julkaisu</a>
+      <div id="lb-footer" style="padding: 20px; text-align:center; width:100%; background:#fff; display:none;">
+        <a id="lb-link" href="#" target="_blank" class="lb-external-link">Avaa alkuperäinen julkaisu</a>
       </div>
     </div>
     <div id="lightbox-text" class="lightbox-caption"></div>
@@ -209,9 +209,10 @@
           else if (url.includes('instagram.com')) {
             type = 'Instagram';
             thumb = 'https://www.instagram.com/static/images/ico/favicon-200.png/ab79da2ad63e.png';
-            let igClean = url.split('?')[0];
-            if (!igClean.endsWith('/')) igClean += '/';
-            content = `<iframe src="${igClean}embed/captioned/" width="400" height="600" frameborder="0" scrolling="no" allowtransparency="true"></iframe>`;
+            // Puhdistetaan linkki kaikesta ylimääräisestä
+            let igBase = url.split('?')[0];
+            if (!igBase.endsWith('/')) igBase += '/';
+            content = `<iframe src="${igBase}embed/captioned/" width="400" height="600" frameborder="0" scrolling="no" allowtransparency="true"></iframe>`;
           }
           else if (url.includes('tiktok.com')) {
             type = 'TikTok';
