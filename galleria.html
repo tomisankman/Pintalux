@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Galleria – PintaLux Oy</title>
   <meta name="description" content="Katso PintaLuxin töiden tulokset — ennen ja jälkeen kuvat, kuvagalleria ja videot." />
-  <link rel="canonical" href="https://www.pintalux.fi/galleria/" />
+  <link rel="canonical" href="https://pintalux.online/galleria" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.pintalux.fi/galleria/" />
+  <meta property="og:url" content="https://pintalux.online/galleria" />
   <meta property="og:title" content="Galleria – PintaLux Oy" />
   <meta property="og:description" content="Katso PintaLuxin töiden tulokset — ennen ja jälkeen kuvat, kuvagalleria ja videot." />
   <meta property="og:locale" content="fi_FI" />
@@ -18,21 +18,22 @@
 
   <!--
   ═══════════════════════════════════════════════════════════
-  SISÄLLÖN LISÄÄMINEN — LUE TÄMÄ ENSIN
+  SISÄLLÖN LISÄÄMINEN — OHJEET
   ═══════════════════════════════════════════════════════════
 
   1. ENNEN/JÄLKEEN-KUVAT
-     Lisää kuvatiedostot images/ -kansioon.
-     Lisää alla olevaan BEFORE_AFTER-listaan uusi rivi mallin mukaan.
+     - Lataa kuvat kansioon: images/ennen-jalkeen/
+     - Lisää alle BEFORE_AFTER-listaan uusi rivi.
+     - Esimerkki: { id: 'kylpyhuone1', caption: 'Kylpyhuoneen pesu', location: 'Pori' }
+     - HUOM: Koodi olettaa että kuvat ovat nimellä: 'kylpyhuone1-before.jpg' ja 'kylpyhuone1-after.jpg'
 
-  2. KUVAT (ilman ennen-kuvaa)
-     Lisää kuvatiedostot images/ -kansioon.
-     Lisää alla olevaan PHOTOS-listaan uusi rivi.
+  2. KUVAGALLERIA (tavalliset kuvat)
+     - Lataa kuvat kansioon: images/galleria/
+     - Lisää alle PHOTOS-listaan uusi rivi.
+     - Esimerkki: { src: 'remontti.jpg', caption: 'Valmis pinta', location: 'Rauma' }
 
   3. YOUTUBE-VIDEOT
-     Kopioi YouTube-videon ID (URL:n lopussa oleva koodi, esim.
-     https://youtube.com/watch?v=TÄMÄ_ON_ID).
-     Lisää VIDEOS-listaan.
+     - Lisää VIDEOS-listaan videon ID (löytyy YouTube-linkin lopusta).
 
   ═══════════════════════════════════════════════════════════
   -->
@@ -43,44 +44,39 @@
     // ════════════════════════════════════════════════════
 
     // ENNEN & JÄLKEEN -KUVAT
-    // Lisää uusi rivi: { before: 'images/ENNEN.jpg', after: 'images/JÄLKEEN.jpg', caption: 'Kuvaus' }
+    // Kansion polku on automaattisesti: images/ennen-jalkeen/
     const BEFORE_AFTER = [
       {
-        before: 'images/ba1-before.jpg',
-        after:  'images/ba1-after.jpg',
+        id: 'ba1', // Tiedostot: ba1-before.jpg ja ba1-after.jpg
         caption: 'Saunan lasin puhdistus ja nanopinnoitus',
         location: 'Pori'
       },
       {
-        before: 'images/ba2-before.jpg',
-        after:  'images/ba2-after.jpg',
+        id: 'ba2', // Tiedostot: ba2-before.jpg ja ba2-after.jpg
         caption: 'Suihkulasin kalkkipuhdistus',
         location: 'Rauma'
       },
       {
-        before: 'images/ba3-before.jpg',
-        after:  'images/ba3-after.jpg',
+        id: 'ba3', // Tiedostot: ba3-before.jpg ja ba3-after.jpg
         caption: 'Kylpyhuoneen silikonisaumat uusittu',
         location: 'Tampere'
       },
     ];
 
-    // KUVAGALLERIA (yksittäiset kuvat, ei ennen-kuvaa)
-    // Lisää uusi rivi: { src: 'images/KUVA.jpg', caption: 'Kuvaus', location: 'Kaupunki' }
+    // KUVAGALLERIA (yksittäiset kuvat)
+    // Kansion polku on automaattisesti: images/galleria/
     const PHOTOS = [
-      { src: 'images/photo1.jpg', caption: 'Nanopinnoitettu kylpyhuone', location: 'Pori' },
-      { src: 'images/photo2.jpg', caption: 'Kylpyhuoneremontti valmis', location: 'Ulvila' },
-      { src: 'images/photo3.jpg', caption: 'Talon ulkomaalaus', location: 'Harjavalta' },
-      { src: 'images/photo4.jpg', caption: 'Muuttosiivous', location: 'Pori' },
-      { src: 'images/photo5.jpg', caption: 'Suihkulasit puhdistettu', location: 'Kankaanpää' },
-      { src: 'images/photo6.jpg', caption: 'Pintaremontti valmis', location: 'Pori' },
+      { src: 'photo1.jpg', caption: 'Nanopinnoitettu kylpyhuone', location: 'Pori' },
+      { src: 'photo2.jpg', caption: 'Kylpyhuoneremontti valmis', location: 'Ulvila' },
+      { src: 'photo3.jpg', caption: 'Talon ulkomaalaus', location: 'Harjavalta' },
+      { src: 'photo4.jpg', caption: 'Muuttosiivous', location: 'Pori' },
+      { src: 'photo5.jpg', caption: 'Suihkulasit puhdistettu', location: 'Kankaanpää' },
+      { src: 'photo6.jpg', caption: 'Pintaremontti valmis', location: 'Pori' },
     ];
 
     // YOUTUBE-VIDEOT
-    // Kopioi videon ID YouTube URL:sta: youtube.com/watch?v=TÄMÄ
     const VIDEOS = [
       { id: 'YOUTUBE_ID_TÄHÄN', title: 'Nanopinnoituksen tulos — ennen ja jälkeen' },
-      { id: 'YOUTUBE_ID_TÄHÄN', title: 'Kylpyhuoneremontti alusta loppuun' },
     ];
 
     // ════════════════════════════════════════════════════
@@ -132,16 +128,6 @@
       transition: color .15s, background .15s;
     }
     .nav-back:hover { color: var(--navy); background: var(--light); }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 22px; border-radius: 10px;
-      font-weight: 700; font-size: .9rem; cursor: pointer;
-      transition: transform .15s, box-shadow .15s, background .15s;
-      border: none; text-decoration: none;
-    }
-    .btn:hover { transform: translateY(-1px); }
-    .btn-primary { background: var(--orange); color: #fff; box-shadow: 0 4px 16px rgba(232,98,42,.3); }
-    .btn-primary:hover { background: #d4541f; }
 
     /* PAGE HEADER */
     .page-header {
@@ -166,17 +152,6 @@
       font-size: 1rem; color: rgba(255,255,255,.65);
       margin-top: 12px; max-width: 520px; line-height: 1.7;
     }
-    .tab-row {
-      display: flex; gap: 8px; margin-top: 28px; flex-wrap: wrap;
-    }
-    .tab-btn {
-      padding: 9px 20px; border-radius: 100px; border: none; cursor: pointer;
-      font-family: inherit; font-size: .875rem; font-weight: 600;
-      transition: all .15s;
-      background: rgba(255,255,255,.1); color: rgba(255,255,255,.75);
-    }
-    .tab-btn.active { background: var(--teal); color: #fff; }
-    .tab-btn:hover:not(.active) { background: rgba(255,255,255,.2); color: #fff; }
 
     /* SECTIONS */
     .section { padding: 72px 0; }
@@ -187,11 +162,12 @@
     }
     .section-sub { font-size: .95rem; color: var(--gray); margin-top: 8px; line-height: 1.65; }
 
-    /* ── BEFORE/AFTER SLIDER ── */
+    /* BEFORE/AFTER SLIDER */
     .ba-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
       gap: 28px;
     }
+    @media (max-width: 500px) { .ba-grid { grid-template-columns: 1fr; } }
     .ba-card {
       background: #fff; border-radius: 20px;
       box-shadow: var(--shadow); overflow: hidden;
@@ -209,16 +185,6 @@
     .ba-img-before img, .ba-img-after img {
       width: 100%; height: 100%; object-fit: cover; display: block;
     }
-    /* placeholder when no image */
-    .ba-placeholder-img {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 10px; font-size: .85rem; font-weight: 500; color: #666;
-    }
-    .ba-placeholder-img .icon { font-size: 2.5rem; opacity: .4; }
-    .ba-img-before .ba-placeholder-img { background: #2a2a2a; color: #888; }
-    .ba-img-after  .ba-placeholder-img { background: linear-gradient(135deg, #0d2a2a, #1a3d3d); color: #5dd; }
     .ba-img-after { clip-path: inset(0 50% 0 0); }
     .ba-divider {
       position: absolute; top: 0; bottom: 0;
@@ -235,7 +201,6 @@
       display: flex; align-items: center; justify-content: center;
       z-index: 4; pointer-events: none;
     }
-    .ba-handle svg { color: var(--navy); }
     .ba-label-before, .ba-label-after {
       position: absolute; top: 14px; z-index: 5;
       padding: 4px 11px; border-radius: 6px;
@@ -249,20 +214,9 @@
       display: flex; align-items: center; justify-content: space-between; gap: 12px;
     }
     .ba-caption-text { font-size: .9rem; font-weight: 600; color: var(--navy); }
-    .ba-caption-loc {
-      font-size: .78rem; color: var(--gray);
-      display: flex; align-items: center; gap: 4px; white-space: nowrap;
-    }
-    .ba-drag-hint {
-      position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
-      background: rgba(0,0,0,.55); color: #fff; border-radius: 100px;
-      padding: 4px 12px; font-size: .72rem; font-weight: 600; letter-spacing: .05em;
-      pointer-events: none; z-index: 5; white-space: nowrap;
-      opacity: 1; transition: opacity .4s;
-    }
-    .ba-slider-wrap.dragged .ba-drag-hint { opacity: 0; }
+    .ba-caption-loc { font-size: .78rem; color: var(--gray); display: flex; align-items: center; gap: 4px; }
 
-    /* ── PHOTO GRID ── */
+    /* PHOTO GRID */
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -275,397 +229,188 @@
       border: 1px solid var(--mid);
     }
     .photo-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-    .photo-img {
-      aspect-ratio: 4/3; overflow: hidden; position: relative;
-      background: var(--mid);
-    }
+    .photo-img { aspect-ratio: 4/3; overflow: hidden; position: relative; background: var(--mid); }
     .photo-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
     .photo-card:hover .photo-img img { transform: scale(1.04); }
-    .photo-placeholder {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 8px; color: var(--gray); font-size: .82rem; font-weight: 500;
-    }
-    .photo-placeholder .icon { font-size: 2rem; opacity: .35; }
     .photo-caption {
       padding: 12px 16px;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
     }
-    .photo-caption-text { font-size: .875rem; font-weight: 600; color: var(--navy); }
-    .photo-caption-loc { font-size: .75rem; color: var(--gray); }
+    .photo-title { font-size: .85rem; font-weight: 600; color: var(--navy); }
+    .photo-loc { font-size: .75rem; color: var(--gray); display: flex; align-items: center; gap: 3px; }
 
-    /* LIGHTBOX */
-    .lightbox {
-      display: none; position: fixed; inset: 0; z-index: 1000;
-      background: rgba(0,0,0,.9); align-items: center; justify-content: center;
-      padding: 20px;
-    }
-    .lightbox.open { display: flex; }
-    .lightbox-img-wrap { max-width: 90vw; max-height: 90vh; position: relative; }
-    .lightbox-img-wrap img { max-width: 90vw; max-height: 85vh; border-radius: 10px; display: block; }
-    .lightbox-close {
-      position: fixed; top: 20px; right: 20px; z-index: 1001;
-      width: 44px; height: 44px; border-radius: 50%;
-      background: rgba(255,255,255,.15); color: #fff;
-      border: none; cursor: pointer; font-size: 1.3rem;
-      display: flex; align-items: center; justify-content: center;
-      transition: background .15s;
-    }
-    .lightbox-close:hover { background: rgba(255,255,255,.3); }
-    .lightbox-caption {
-      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
-      background: rgba(0,0,0,.7); color: #fff;
-      padding: 8px 20px; border-radius: 100px;
-      font-size: .875rem; font-weight: 500; white-space: nowrap;
-      max-width: 90vw; overflow: hidden; text-overflow: ellipsis;
-    }
-    .lightbox-nav {
-      position: fixed; top: 50%; transform: translateY(-50%);
-      background: rgba(255,255,255,.12); color: #fff;
-      border: none; cursor: pointer; border-radius: 50%;
-      width: 48px; height: 48px; font-size: 1.2rem;
-      display: flex; align-items: center; justify-content: center;
-      transition: background .15s; z-index: 1001;
-    }
-    .lightbox-nav:hover { background: rgba(255,255,255,.25); }
-    #lb-prev { left: 20px; }
-    #lb-next { right: 20px; }
-
-    /* ── VIDEOS ── */
+    /* VIDEO GRID */
     .video-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
       gap: 24px;
     }
+    @media (max-width: 400px) { .video-grid { grid-template-columns: 1fr; } }
     .video-card {
-      background: #fff; border-radius: 20px;
-      overflow: hidden; box-shadow: var(--shadow);
-      border: 1px solid var(--mid);
+      background: #fff; border-radius: 20px; overflow: hidden;
+      box-shadow: var(--shadow); border: 1px solid var(--mid);
     }
-    .video-embed {
-      aspect-ratio: 16/9; position: relative;
-      background: #111; overflow: hidden;
-    }
-    .video-embed iframe {
-      position: absolute; inset: 0; width: 100%; height: 100%; border: none;
-    }
-    .video-placeholder {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 12px;
-      background: #1a1a1a;
-    }
-    .video-placeholder .yt-icon {
-      width: 64px; height: 64px; background: #ff0000;
-      border-radius: 14px; display: flex; align-items: center; justify-content: center;
-    }
-    .video-placeholder .yt-icon svg { fill: #fff; }
-    .video-placeholder p { color: rgba(255,255,255,.4); font-size: .85rem; }
-    .video-title { padding: 14px 18px; font-size: .9rem; font-weight: 600; color: var(--navy); }
+    .video-wrap { position: relative; aspect-ratio: 16/9; background: #000; }
+    .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+    .video-info { padding: 16px 20px; }
+    .video-title { font-size: .95rem; font-weight: 700; color: var(--navy); }
 
-    /* EMPTY STATE */
-    .empty-state {
-      text-align: center; padding: 64px 24px;
-      color: var(--gray); font-size: .95rem;
-    }
-    .empty-state .icon { font-size: 2.5rem; margin-bottom: 12px; opacity: .4; }
-
-    /* ── TABS ── */
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-
-    /* FOOTER MINI */
-    .footer-mini {
-      background: #0f1923; padding: 32px 0;
-      text-align: center;
-    }
-    .footer-mini p { font-size: .82rem; color: rgba(255,255,255,.3); }
-    .footer-mini a { color: rgba(255,255,255,.5); }
-    .footer-mini a:hover { color: var(--teal2); }
-
-    /* RESPONSIVE */
-    @media (max-width: 640px) {
-      .ba-grid { grid-template-columns: 1fr; }
-      .video-grid { grid-template-columns: 1fr; }
-      .photo-grid { grid-template-columns: repeat(2, 1fr); }
-      #lb-prev { left: 8px; }
-      #lb-next { right: 8px; }
-    }
-    @media (max-width: 380px) {
-      .photo-grid { grid-template-columns: 1fr; }
-    }
+    /* FOOTER */
+    .footer { background: #fff; border-top: 1px solid var(--mid); padding: 48px 0; margin-top: 40px; text-align: center; }
+    .footer-text { color: var(--gray); font-size: .875rem; }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="container">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
-        <div class="nav-logo-mark">PL</div>
-        PintaLux Oy
-      </a>
-      <a href="index.html" class="nav-back">← Takaisin etusivulle</a>
-      <a href="index.html#pl-yhteys" class="btn btn-primary">Varaa kartoitus</a>
-    </div>
-  </div>
-</nav>
-
-<!-- PAGE HEADER -->
-<div class="page-header">
-  <div class="container">
-    <div style="position:relative">
-      <span class="badge">Galleria</span>
-      <h1 class="page-title">Työmme puhuvat puolestaan</h1>
-      <p class="page-sub">Katso ennen ja jälkeen -tulokset, kuvagalleria ja videot. Vedä slideria nähdäksesi eron.</p>
-      <div class="tab-row">
-        <button class="tab-btn active" onclick="showTab('ba')">⟺ Ennen & jälkeen</button>
-        <button class="tab-btn" onclick="showTab('photos')">📷 Kuvat</button>
-        <button class="tab-btn" onclick="showTab('videos')">▶ Videot</button>
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <div class="nav-logo-mark">PL</div>
+          <span>PintaLux</span>
+        </a>
+        <a href="/" class="nav-back">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5m0 0l7 7m-7-7l7-7"/></svg>
+          Takaisin etusivulle
+        </a>
       </div>
     </div>
-  </div>
-</div>
+  </nav>
 
-<!-- CONTENT -->
-<main>
+  <header class="page-header">
+    <div class="container">
+      <span class="badge">Galleria</span>
+      <h1 class="page-title">Työmme jälki puhuu puolestaan</h1>
+      <p class="page-sub">Katso miten PintaLuxin ammattilaiset ja laadukkaat nanopinnoitteet uudistavat pintoja.</p>
+    </div>
+  </header>
 
-  <!-- BEFORE/AFTER -->
-  <div class="tab-content active" id="tab-ba">
+  <main>
+    <!-- ENNEN JA JÄLKEEN -->
     <section class="section">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Ennen & jälkeen</h2>
-          <p class="section-sub">Vedä slideria vasemmalle tai oikealle nähdäksesi eron käsittelyn jälkeen.</p>
+          <h2 class="section-title">Ennen & Jälkeen</h2>
+          <p class="section-sub">Vedä liukusäädintä nähdäksesi eron.</p>
         </div>
-        <div class="ba-grid" id="ba-grid"></div>
+        <div id="ba-container" class="ba-grid">
+          <!-- JS täyttää -->
+        </div>
       </div>
     </section>
-  </div>
 
-  <!-- PHOTOS -->
-  <div class="tab-content" id="tab-photos">
-    <section class="section">
+    <!-- KUVAGALLERIA -->
+    <section class="section" style="background: #fff; border-top: 1px solid var(--mid); border-bottom: 1px solid var(--mid);">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Kuvagalleria</h2>
-          <p class="section-sub">Klikkaa kuvaa suurentaaksesi.</p>
+          <p class="section-sub">Poimintoja viimeisimmistä kohteistamme.</p>
         </div>
-        <div class="photo-grid" id="photo-grid"></div>
+        <div id="photo-container" class="photo-grid">
+          <!-- JS täyttää -->
+        </div>
       </div>
     </section>
-  </div>
 
-  <!-- VIDEOS -->
-  <div class="tab-content" id="tab-videos">
+    <!-- VIDEOT -->
     <section class="section">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Videot</h2>
-          <p class="section-sub">YouTube-videot suoraan kanavallamme.</p>
+          <p class="section-sub">Katso nanopinnoituksen teho käytännössä.</p>
         </div>
-        <div class="video-grid" id="video-grid"></div>
+        <div id="video-container" class="video-grid">
+          <!-- JS täyttää -->
+        </div>
       </div>
     </section>
-  </div>
+  </main>
 
-</main>
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">&copy; 2026 PintaLux Oy. Kaikki oikeudet pidätetään.</p>
+    </div>
+  </footer>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-  <button class="lightbox-nav" id="lb-prev" onclick="lightboxNav(-1)">‹</button>
-  <button class="lightbox-nav" id="lb-next" onclick="lightboxNav(+1)">›</button>
-  <div class="lightbox-img-wrap">
-    <img id="lb-img" src="" alt="" />
-  </div>
-  <div class="lightbox-caption" id="lb-caption"></div>
-</div>
-
-<!-- FOOTER -->
-<footer class="footer-mini">
-  <div class="container">
-    <p>© 2026 PintaLux Oy · <a href="tel:0458003773">045 800 3773</a> · <a href="mailto:info@pintalux.fi">info@pintalux.fi</a></p>
-  </div>
-</footer>
-
-<script>
-  // ── TABS ──────────────────────────────────────────────
-  function showTab(name) {
-    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-    document.getElementById('tab-' + name).classList.add('active');
-    event.currentTarget.classList.add('active');
-  }
-
-  // ── RENDER BEFORE/AFTER ───────────────────────────────
-  function renderBA() {
-    const grid = document.getElementById('ba-grid');
-    if (!BEFORE_AFTER.length) {
-      grid.innerHTML = `<div class="empty-state"><div class="icon">📷</div><p>Ei vielä ennen/jälkeen -kuvia. Lisää kuvia images/ -kansioon ja päivitä BEFORE_AFTER-lista.</p></div>`;
-      return;
-    }
-    grid.innerHTML = BEFORE_AFTER.map((item, i) => `
-      <div class="ba-card">
-        <div class="ba-slider-wrap" data-index="${i}">
-          <div class="ba-img-before">
-            ${imgOrPlaceholder(item.before, '📷', 'Ennen')}
-          </div>
-          <div class="ba-img-after">
-            ${imgOrPlaceholder(item.after, '✨', 'Jälkeen')}
-          </div>
+  <script>
+    // Renderöi Ennen/Jälkeen -kortit
+    const baContainer = document.getElementById('ba-container');
+    BEFORE_AFTER.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'ba-card';
+      card.innerHTML = `
+        <div class="ba-slider-wrap">
+          <div class="ba-img-before"><img src="images/ennen-jalkeen/${item.id}-before.jpg" alt="Ennen"></div>
+          <div class="ba-img-after"><img src="images/ennen-jalkeen/${item.id}-after.jpg" alt="Jälkeen"></div>
           <div class="ba-divider"></div>
           <div class="ba-handle">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6"/></svg>
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M18 8l4 4m0 0l-4 4m4-4H2m4-4l-4 4m0 0l4 4"/></svg>
           </div>
-          <span class="ba-label-before">ENNEN</span>
-          <span class="ba-label-after">JÄLKEEN</span>
-          <div class="ba-drag-hint">← Vedä →</div>
+          <span class="ba-label-before">Ennen</span>
+          <span class="ba-label-after">Jälkeen</span>
         </div>
         <div class="ba-caption">
           <span class="ba-caption-text">${item.caption}</span>
-          ${item.location ? `<span class="ba-caption-loc">📍 ${item.location}</span>` : ''}
+          <span class="ba-caption-loc">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            ${item.location}
+          </span>
         </div>
-      </div>
-    `).join('');
+      `;
+      baContainer.appendChild(card);
+    });
 
-    // Initialize sliders
-    document.querySelectorAll('.ba-slider-wrap').forEach(initSlider);
-  }
-
-  function imgOrPlaceholder(src, icon, label) {
-    // Check if it's a placeholder (no real file — shows fallback)
-    return `<div class="ba-placeholder-img" style="position:relative;width:100%;height:100%">
-      <div class="icon">${icon}</div>
-      <span>${label}</span>
-      <img src="${src}" alt="${label}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"
-        onerror="this.style.display='none'" />
-    </div>`;
-  }
-
-  function initSlider(wrap) {
-    let dragging = false;
-
-    function setPosition(pct) {
-      pct = Math.max(2, Math.min(98, pct));
-      const after = wrap.querySelector('.ba-img-after');
-      const divider = wrap.querySelector('.ba-divider');
-      const handle = wrap.querySelector('.ba-handle');
-      after.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
-      divider.style.left = pct + '%';
-      handle.style.left = pct + '%';
-    }
-
-    function getPct(clientX) {
-      const rect = wrap.getBoundingClientRect();
-      return ((clientX - rect.left) / rect.width) * 100;
-    }
-
-    wrap.addEventListener('mousedown', e => { dragging = true; wrap.classList.add('dragged'); setPosition(getPct(e.clientX)); e.preventDefault(); });
-    window.addEventListener('mousemove', e => { if (dragging) setPosition(getPct(e.clientX)); });
-    window.addEventListener('mouseup', () => { dragging = false; });
-
-    wrap.addEventListener('touchstart', e => { dragging = true; wrap.classList.add('dragged'); setPosition(getPct(e.touches[0].clientX)); }, { passive: true });
-    window.addEventListener('touchmove', e => { if (dragging) setPosition(getPct(e.touches[0].clientX)); }, { passive: true });
-    window.addEventListener('touchend', () => { dragging = false; });
-
-    // Init at 50%
-    setPosition(50);
-  }
-
-  // ── RENDER PHOTOS ─────────────────────────────────────
-  let currentPhotoIndex = 0;
-
-  function renderPhotos() {
-    const grid = document.getElementById('photo-grid');
-    if (!PHOTOS.length) {
-      grid.innerHTML = `<div class="empty-state"><div class="icon">📷</div><p>Ei vielä kuvia. Lisää kuvia images/ -kansioon ja päivitä PHOTOS-lista.</p></div>`;
-      return;
-    }
-    grid.innerHTML = PHOTOS.map((p, i) => `
-      <div class="photo-card" onclick="openLightbox(${i})">
-        <div class="photo-img">
-          <div class="photo-placeholder">
-            <div class="icon">🏠</div>
-            <span>${p.caption}</span>
-            <img src="${p.src}" alt="${p.caption}"
-              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"
-              onerror="this.style.display='none'" />
-          </div>
-        </div>
+    // Renderöi Kuvat
+    const photoContainer = document.getElementById('photo-container');
+    PHOTOS.forEach(photo => {
+      const div = document.createElement('div');
+      div.className = 'photo-card';
+      div.innerHTML = `
+        <div class="photo-img"><img src="images/galleria/${photo.src}" alt="${photo.caption}"></div>
         <div class="photo-caption">
-          <span class="photo-caption-text">${p.caption}</span>
-          ${p.location ? `<span class="photo-caption-loc">📍 ${p.location}</span>` : ''}
+          <span class="photo-title">${photo.caption}</span>
+          <span class="photo-loc">${photo.location}</span>
         </div>
-      </div>
-    `).join('');
-  }
+      `;
+      photoContainer.appendChild(div);
+    });
 
-  function openLightbox(index) {
-    currentPhotoIndex = index;
-    const p = PHOTOS[index];
-    document.getElementById('lb-img').src = p.src;
-    document.getElementById('lb-img').alt = p.caption;
-    document.getElementById('lb-caption').textContent = p.caption + (p.location ? ' · ' + p.location : '');
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox(e) {
-    if (e && e.target !== document.getElementById('lightbox') && !e.target.classList.contains('lightbox-close')) return;
-    document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function lightboxNav(dir) {
-    const next = (currentPhotoIndex + dir + PHOTOS.length) % PHOTOS.length;
-    openLightbox(next);
-    event.stopPropagation();
-  }
-
-  document.addEventListener('keydown', e => {
-    if (!document.getElementById('lightbox').classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox({ target: document.getElementById('lightbox') });
-    if (e.key === 'ArrowRight') lightboxNav(1);
-    if (e.key === 'ArrowLeft') lightboxNav(-1);
-  });
-
-  // ── RENDER VIDEOS ─────────────────────────────────────
-  function renderVideos() {
-    const grid = document.getElementById('video-grid');
-    const validVideos = VIDEOS.filter(v => v.id && v.id !== 'YOUTUBE_ID_TÄHÄN');
-
-    if (!validVideos.length) {
-      grid.innerHTML = `
-        <div class="empty-state" style="grid-column:1/-1">
-          <div class="icon">▶</div>
-          <p>Ei vielä videoita. Lisää YouTube-videoiden ID:t VIDEOS-listaan tiedoston yläosassa.</p>
-          <p style="margin-top:8px;font-size:.8rem;opacity:.7">YouTube URL: youtube.com/watch?v=<strong>TÄMÄ_ON_ID</strong></p>
-        </div>`;
-      return;
-    }
-
-    grid.innerHTML = validVideos.map(v => `
-      <div class="video-card">
-        <div class="video-embed">
-          <iframe
-            src="https://www.youtube.com/embed/${v.id}?rel=0&modestbranding=1"
-            title="${v.title}"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            loading="lazy">
-          </iframe>
+    // Renderöi Videot
+    const videoContainer = document.getElementById('video-container');
+    VIDEOS.forEach(v => {
+      const div = document.createElement('div');
+      div.className = 'video-card';
+      div.innerHTML = `
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe>
         </div>
-        <div class="video-title">${v.title}</div>
-      </div>
-    `).join('');
-  }
+        <div class="video-info">
+          <h3 class="video-title">${v.title}</h3>
+        </div>
+      `;
+      videoContainer.appendChild(div);
+    });
 
-  // ── INIT ──────────────────────────────────────────────
-  renderBA();
-  renderPhotos();
-  renderVideos();
-</script>
+    // Slider Logiikka
+    document.querySelectorAll('.ba-slider-wrap').forEach(slider => {
+      const afterImg = slider.querySelector('.ba-img-after');
+      const divider = slider.querySelector('.ba-divider');
+      const handle = slider.querySelector('.ba-handle');
+
+      const move = (e) => {
+        let x = (e.pageX || e.touches[0].pageX) - slider.getBoundingClientRect().left;
+        let w = slider.offsetWidth;
+        let perc = (x / w) * 100;
+        if (perc < 0) perc = 0;
+        if (perc > 100) perc = 100;
+        afterImg.style.clipPath = `inset(0 0 0 ${perc}%)`;
+        divider.style.left = perc + '%';
+        handle.style.left = perc + '%';
+      };
+
+      slider.addEventListener('mousemove', move);
+      slider.addEventListener('touchmove', move);
+    });
+  </script>
 </body>
 </html>
