@@ -154,10 +154,26 @@
     .footer-bottom { border-top: 1px solid var(--mid); padding-top: 32px; display: flex; justify-content: space-between; align-items: center; font-size: .85rem; color: var(--gray); }
     .footer-seo { font-size: .75rem; opacity: .6; }
 
-    .form-group { margin-bottom: 20px; }
-    .form-group label { display: block; font-size: .9rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
-    .form-control { width: 100%; padding: 12px 16px; border: 1px solid var(--mid); border-radius: 8px; font-size: 1rem; font-family: inherit; transition: border-color .15s; }
-    .form-control:focus { outline: none; border-color: var(--teal); }
+    .form-group { 
+      display: grid; 
+      grid-template-columns: 1.5fr 1fr; 
+      gap: 20px; 
+      margin-bottom: 24px; 
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--mid);
+    }
+    .form-group:last-child { border-bottom: none; }
+    .form-info { font-size: 0.9rem; color: var(--gray); line-height: 1.4; }
+    .form-info strong { display: block; color: var(--navy); margin-bottom: 4px; font-size: 0.95rem; }
+    .form-input-wrap { position: relative; }
+    .form-control { width: 100%; padding: 12px 16px; border: 1px solid var(--mid); border-radius: 8px; font-size: 1rem; font-family: inherit; transition: border-color .15s; font-weight: 600; text-align: right; }
+    .form-control:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(0,168,157,0.1); }
+    
+    @media (max-width: 800px) {
+      .form-group { grid-template-columns: 1fr; gap: 10px; }
+      .form-control { text-align: left; }
+    }
 
     @media (max-width: 900px) {
       .nav-links, .nav-cta .nav-phone { display: none; }
@@ -216,77 +232,155 @@
       <p class="section-sub">Laske, miten PintaLuxin nanopinnoitus ja huoltopalvelut voivat säästää yrityksesi aikaa ja rahaa. Optimoi kiinteistösi ylläpito ja paranna hygieniaa.</p>
 
       <!-- ROI Calculator Section -->
-      <div class="roi-calculator-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:60px;">
+      <div class="roi-calculator-grid" style="display:grid; grid-template-columns:1.2fr 0.8fr; gap:60px; margin-top:60px;">
         <div class="roi-inputs">
-          <h2 style="font-size:1.5rem; margin-bottom:30px;">Investointi & Kapasiteetti</h2>
+          <h2 style="font-size:1.5rem; margin-bottom:30px; color:var(--teal);">1. Investointi & Kapasiteetti</h2>
+          
           <div class="form-group">
-            <label for="huoneet">Huonemäärä / Tilojen määrä (kpl)</label>
-            <input type="number" id="huoneet" value="100" class="form-control" />
-          </div>
-          <div class="form-group">
-            <label for="kayttoaste">Käyttöaste (%)</label>
-            <input type="number" id="kayttoaste" value="70" class="form-control" />
-          </div>
-          <div class="form-group">
-            <label for="pinnoitushinta">Pinnoitushinta / yksikkö (€)</label>
-            <input type="number" id="pinnoitushinta" value="340" class="form-control" />
+            <div class="form-info">
+              <strong>Huonemäärä / Tilojen määrä</strong>
+              Moneenko huoneeseen tai tilaan pinnoitus ja huolto toteutetaan.
+            </div>
+            <div class="form-input-wrap">
+              <input type="number" id="huoneet" value="100" class="form-control" />
+            </div>
           </div>
 
-          <h2 style="font-size:1.5rem; margin-top:40px; margin-bottom:30px;">Operatiivinen Siivous</h2>
           <div class="form-group">
-            <label for="aika-ennen">Siivousaika ENNEN (min/yksikkö)</label>
-            <input type="number" id="aika-ennen" value="22" class="form-control" />
-          </div>
-          <div class="form-group">
-            <label for="aika-jalkeen">Siivousaika JÄLKEEN (min/yksikkö)</label>
-            <input type="number" id="aika-jalkeen" value="18" class="form-control" />
-          </div>
-          <div class="form-group">
-            <label for="tuntihinta">Siivouksen tuntihinta (€/h)</label>
-            <input type="number" id="tuntihinta" value="28" class="form-control" />
-          </div>
-          <div class="form-group">
-            <label for="kemia-kulu">Kemikaalikustannus / yksikkö / vuosi (€)</label>
-            <input type="number" id="kemia-kulu" value="100" class="form-control" />
+            <div class="form-info">
+              <strong>Käyttöaste (%)</strong>
+              Tilojen keskimääräinen käyttöaste vuoden aikana. Vaikuttaa siivouskertoihin.
+            </div>
+            <div class="form-input-wrap">
+              <input type="number" id="kayttoaste" value="70" class="form-control" />
+            </div>
           </div>
 
-          <h2 style="font-size:1.5rem; margin-top:40px; margin-bottom:30px;">Huolto & Elinkaari</h2>
           <div class="form-group">
-            <label for="remontti-hinta">Vältetty remontin hinta (€/yksikkö)</label>
-            <input type="number" id="remontti-hinta" value="150" class="form-control" />
+            <div class="form-info">
+              <strong>Pinnoitushinta / yksikkö</strong>
+              Kertaluonteinen investointi per huone tai tila.
+            </div>
+            <div class="form-input-wrap">
+              <input type="number" id="pinnoitushinta" value="340" class="form-control" />
+            </div>
           </div>
+
+          <h2 style="font-size:1.5rem; margin-top:60px; margin-bottom:30px; color:var(--teal);">2. Operatiivinen Siivous</h2>
+          
           <div class="form-group">
-            <label for="remontti-vali">Uusimisväli ilman pinnoitusta (vuotta)</label>
-            <input type="number" id="remontti-vali" value="2" class="form-control" />
+            <div class="form-info">
+              <strong>Siivousaika ENNEN (min)</strong>
+              Keskimääräinen siivousaika per huone ennen pinnoitusta.
+            </div>
+            <div class="form-input-wrap">
+              <input type="number" id="aika-ennen" value="22" class="form-control" />
+            </div>
           </div>
+
           <div class="form-group">
-            <label for="huolto-hinta">PintaLux-huoltokäsittely hinta (€/yksikkö)</label>
-            <input type="number" id="huolto-hinta" value="100" class="form-control" />
+            <div class="form-info">
+              <strong>Siivousaika JÄLKEEN (min)</strong>
+              Arvioitu siivousaika nanopinnoituksen jälkeen. Tyypillinen säästö 15-30%.
+            </div>
+            <div class="form-input-wrap">
+              <input type="number" id="aika-jalkeen" value="18" class="form-control" />
+            </div>
           </div>
+
           <div class="form-group">
-            <label for="huolto-vali">Huoltoväli pinnoitettuna (vuotta)</label>
-            <input type="number" id="huolto-vali" value="3" class="form-control" />
+            <div class="form-info">
+              <strong>Siivouksen tuntihinta (€/h)</strong>
+              Henkilöstökustannus tai ulkoistetun siivouksen hinta.
+            </div>
+            <div class="form-input-wrap">
+              <input type="number" id="tuntihinta" value="28" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-info">
+              <strong>Kemikaalikustannus / vuosi</strong>
+              Pesuaineiden ja kemikaalien kulutus per huone vuodessa.
+            </div>
+            <div class="form-input-wrap">
+              <input type="number" id="kemia-kulu" value="100" class="form-control" />
+            </div>
+          </div>
+
+          <h2 style="font-size:1.5rem; margin-top:60px; margin-bottom:30px; color:var(--teal);">3. Huolto & Elinkaari</h2>
+          
+          <div class="form-group">
+            <div class="form-info">
+              <strong>Vältetty remontin hinta</strong>
+              Pienemmät korjaukset (esim. silikonien vaihto), jotka vältetään pinnoituksella.
+            </div>
+            <div class="form-input-wrap">
+              <input type="number" id="remontti-hinta" value="150" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-info">
+              <strong>Uusimisväli ilman pinnoitusta</strong>
+              Kuinka usein pienhuoltoja (esim. saumojen uusiminen) joudutaan tekemään.
+            </div>
+            <div class="form-input-wrap">
+              <input type="number" id="remontti-vali" value="2" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-info">
+              <strong>PintaLux-huoltokäsittely</strong>
+              Ylläpitokäsittelyn hinta, joka varmistaa pinnoitteen keston.
+            </div>
+            <div class="form-input-wrap">
+              <input type="number" id="huolto-hinta" value="100" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-info">
+              <strong>Huoltoväli pinnoitettuna</strong>
+              PintaLux-ylläpitohuollon väli (vuosina). Pidentää pintojen elinkaarta.
+            </div>
+            <div class="form-input-wrap">
+              <input type="number" id="huolto-vali" value="3" class="form-control" />
+            </div>
           </div>
         </div>
 
-        <div class="roi-results" style="background:#f4f7fa; padding:40px; border-radius:20px;">
-          <h2 style="font-size:1.5rem; margin-bottom:30px;">Analyysin yhteenveto</h2>
-          <p style="font-size:1.1rem; color:var(--gray);">Alkuinvestoinnin takaisinmaksu:</p>
-          <p id="takaisinmaksu" style="font-size:3rem; font-weight:800; color:var(--orange); margin-top:10px;">0 kk</p>
+        <div class="roi-results-wrap" style="position: sticky; top: 100px;">
+          <div class="roi-results" style="background:var(--navy); color:#fff; padding:40px; border-radius:24px; box-shadow:var(--shadow-lg);">
+            <h2 style="font-size:1.5rem; margin-bottom:30px; color:var(--teal2);">Analyysin yhteenveto</h2>
+            
+            <div style="margin-bottom:30px; padding-bottom:20px; border-bottom:1px solid rgba(255,255,255,0.1);">
+              <p style="font-size:1rem; color:rgba(255,255,255,0.6);">Alkuinvestoinnin takaisinmaksu</p>
+              <p id="takaisinmaksu" style="font-size:3.5rem; font-weight:800; color:var(--orange); line-height:1;">0 kk</p>
+            </div>
 
-          <p style="font-size:1.1rem; color:var(--gray); margin-top:30px;">Alkuinvestointi:</p>
-          <p id="alkuinvestointi" style="font-size:1.8rem; font-weight:700; color:var(--navy); margin-top:5px;">0 €</p>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:30px;">
+              <div>
+                <p style="font-size:0.9rem; color:rgba(255,255,255,0.6);">Alkuinvestointi</p>
+                <p id="alkuinvestointi" style="font-size:1.4rem; font-weight:700; color:#fff;">0 €</p>
+              </div>
+              <div>
+                <p style="font-size:0.9rem; color:rgba(255,255,255,0.6);">Vuotuinen säästö</p>
+                <p id="vuotuinen-saasto" style="font-size:1.4rem; font-weight:700; color:var(--teal2);">0 €</p>
+              </div>
+            </div>
 
-          <p style="font-size:1.1rem; color:var(--gray); margin-top:30px;">Vuotuinen säästöpotentiaali:</p>
-          <p id="vuotuinen-saasto" style="font-size:1.8rem; font-weight:700; color:var(--teal); margin-top:5px;">0 €</p>
+            <h3 style="font-size:1.1rem; margin-top:40px; margin-bottom:20px; color:rgba(255,255,255,0.8); text-transform:uppercase; letter-spacing:0.05em;">Säästöjen erittely (vuosi)</h3>
+            <ul style="list-style:none; display:flex; flex-direction:column; gap:12px;">
+              <li style="display:flex; justify-content:space-between; font-size:0.95rem; color:rgba(255,255,255,0.8);">Työaikasäästöt: <span id="tyoaika-saasto" style="font-weight:700; color:#fff;">0 €</span></li>
+              <li style="display:flex; justify-content:space-between; font-size:0.95rem; color:rgba(255,255,255,0.8);">Kemikaalisäästöt: <span id="kemia-saasto" style="font-weight:700; color:#fff;">0 €</span></li>
+              <li style="display:flex; justify-content:space-between; font-size:0.95rem; color:rgba(255,255,255,0.8);">Vältetyt remontit: <span id="remontti-saasto" style="font-weight:700; color:#fff;">0 €</span></li>
+              <li style="display:flex; justify-content:space-between; font-size:0.95rem; color:rgba(255,255,255,0.8);">Huoltoinvestointi: <span id="huolto-investointi" style="font-weight:700; color:rgba(255,255,255,0.5);">0 €</span></li>
+            </ul>
 
-          <h3 style="font-size:1.2rem; margin-top:40px; margin-bottom:20px;">Säästöjen erittely (vuosi)</h3>
-          <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
-            <li style="display:flex; justify-content:space-between; font-size:.95rem;">Työaikasäästöt: <span id="tyoaika-saasto">0 €</span></li>
-            <li style="display:flex; justify-content:space-between; font-size:.95rem;">Kemikaalisäästöt: <span id="kemia-saasto">0 €</span></li>
-            <li style="display:flex; justify-content:space-between; font-size:.95rem;">Vältetyt remontit: <span id="remontti-saasto">0 €</span></li>
-            <li style="display:flex; justify-content:space-between; font-size:.95rem;">Huoltoinvestointi: <span id="huolto-investointi">0 €</span></li>
-          </ul>
+            <a href="index.html#pl-yhteys" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:40px; padding:16px;">Varaa maksuton kartoitus →</a>
+          </div>
         </div>
       </div>
 
@@ -322,9 +416,9 @@
       </div>
 
       <!-- Contact Section -->
-      <div class="contact-cta" style="text-align:center; margin-top:80px;">
+      <div class="contact-cta" style="text-align:center; margin-top:80px; display: flex; flex-direction: column; align-items: center;">
         <h2 class="section-title">Kiinnostuitko? Ota yhteyttä!</h2>
-        <p class="section-sub">Lasketaan yhdessä, miten paljon yrityksesi voi säästää PintaLuxin avulla.</p>
+        <p class="section-sub" style="margin-left: auto; margin-right: auto;">Lasketaan yhdessä, miten paljon yrityksesi voi säästää PintaLuxin avulla.</p>
         <a href="index.html#pl-yhteys" class="btn btn-primary" style="margin-top:30px; padding:18px 40px; font-size:1.1rem;">Varaa maksuton kartoitus →</a>
       </div>
 
@@ -428,14 +522,17 @@
       takaisinmaksu = (alkuinvestointi / vuotuinenSaasto) * 12;
     }
 
+    // Helper for formatting numbers
+    const format = (num) => new Intl.NumberFormat('fi-FI').format(Math.round(num));
+
     // Update UI
     document.getElementById('takaisinmaksu').textContent = `${takaisinmaksu.toFixed(1)} kk`;
-    document.getElementById('alkuinvestointi').textContent = `${alkuinvestointi.toFixed(0)} €`;
-    document.getElementById('vuotuinen-saasto').textContent = `${vuotuinenSaasto.toFixed(0)} €`;
-    document.getElementById('tyoaika-saasto').textContent = `${siivousaikaSaastoEuro.toFixed(0)} €`;
-    document.getElementById('kemia-saasto').textContent = `${kemiaSaasto.toFixed(0)} €`;
-    document.getElementById('remontti-saasto').textContent = `${remonttiSaasto.toFixed(0)} €`;
-    document.getElementById('huolto-investointi').textContent = `${huoltoInvestointi.toFixed(0)} €`;
+    document.getElementById('alkuinvestointi').textContent = `${format(alkuinvestointi)} €`;
+    document.getElementById('vuotuinen-saasto').textContent = `${format(vuotuinenSaasto)} €`;
+    document.getElementById('tyoaika-saasto').textContent = `${format(siivousaikaSaastoEuro)} €`;
+    document.getElementById('kemia-saasto').textContent = `${format(kemiaSaasto)} €`;
+    document.getElementById('remontti-saasto').textContent = `${format(remonttiSaasto)} €`;
+    document.getElementById('huolto-investointi').textContent = `${format(huoltoInvestointi)} €`;
   }
 
   calculateROI(); // Initial calculation
