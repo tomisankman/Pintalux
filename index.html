@@ -1507,51 +1507,59 @@
 </div>
 
 <script>
-  const allReviews = [
-    { initial: "M", text: "Kylpyhuoneen nanopinnoitus ylitti odotukset. Siivousaika puolittui!", stars: 5 },
-    { initial: "J", text: "Todella ammattitaitoista jälkeä ja siistiä työskentelyä. Suosittelen!", stars: 5 },
-    { initial: "A", text: "Lattiakaivon ja saumojen puhdistus teki ihmeitä. Kuin uusi kylppäri.", stars: 5 },
-    { initial: "T", text: "Säästettiin tuhansia euroja kun ei tarvinnutkaan tehdä täyttä remonttia.", stars: 5 },
-    { initial: "S", text: "Ystävällinen palvelu ja selkeä hinta. 5/5 kokemus.", stars: 5 },
-    { initial: "X", text: "Tämä ei näy, koska tähtiä on liian vähän.", stars: 2 }
-  ];
-
-  // Suodatetaan vain 4 ja 5 tähden arvostelut julkiseen popup-ikkunaan
-  const reviews = allReviews.filter(r => r.stars >= 4);
-
+  let reviews = [];
   let currentReview = 0;
   const toast = document.getElementById('review-toast');
   const avatar = document.getElementById('review-avatar');
   const text = document.getElementById('review-text');
 
+  async function loadReviews() {
+    try {
+      const response = await fetch('arvostelut.txt');
+      const data = await response.text();
+      
+      // Pilkotaan teksti tyhjien rivien kohdalta
+      const rawReviews = data.split(/\n\n+/);
+      
+      reviews = rawReviews.map(line => {
+        const parts = line.split(',');
+        if (parts.length >= 3) {
+          const stars = parseInt(parts[0].trim().split('/')[0]);
+          const initial = parts[parts.length - 1].trim();
+          const content = parts.slice(1, -1).join(',').trim();
+          return { stars, initial, text: content };
+        }
+        return null;
+      }).filter(r => r && r.stars >= 4); // Vain 4 ja 5 tähden arvostelut
+
+      if (reviews.length > 0) {
+        startReviewCycle();
+      }
+    } catch (e) {
+      console.error("Virhe arvostelujen latauksessa:", e);
+    }
+  }
+
   function showNextReview() {
-    // Hide toast
     toast.classList.remove('active');
-    
     setTimeout(() => {
-      // Update content
       const r = reviews[currentReview];
       avatar.textContent = r.initial;
       text.textContent = r.text;
-      
-      // Show toast
       toast.classList.add('active');
-      
       currentReview = (currentReview + 1) % reviews.length;
-      
-      // Keep visible for 6 seconds, then hide and wait 10 seconds for next
-      setTimeout(() => {
-        toast.classList.remove('active');
-      }, 6000);
-      
+      setTimeout(() => { toast.classList.remove('active'); }, 6000);
     }, 1000);
   }
 
-  // Start after 3 seconds
-  setTimeout(() => {
-    showNextReview();
-    setInterval(showNextReview, 16000); // 6s visible + 10s wait
-  }, 3000);
+  function startReviewCycle() {
+    setTimeout(() => {
+      showNextReview();
+      setInterval(showNextReview, 16000);
+    }, 3000);
+  }
+
+  loadReviews();
 </script>
 
 <script>
