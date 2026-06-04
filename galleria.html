@@ -4,246 +4,61 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Galleria – PintaLux Oy</title>
-  <meta name="description" content="Katso PintaLuxin töiden tulokset — ennen ja jälkeen kuvat, kuvagalleria ja videot." />
   <link rel="canonical" href="https://pintalux.online/galleria" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://pintalux.online/galleria" />
-  <meta property="og:title" content="Galleria – PintaLux Oy" />
-  <meta property="og:description" content="Katso PintaLuxin töiden tulokset — ennen ja jälkeen kuvat, kuvagalleria ja videot." />
-  <meta property="og:locale" content="fi_FI" />
-  <meta name="robots" content="index, follow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <!--
-  ═══════════════════════════════════════════════════════════
-  SISÄLLÖN LISÄÄMINEN — OHJEET
-  ═══════════════════════════════════════════════════════════
-
-  1. ENNEN/JÄLKEEN-KUVAT
-     - Lataa kuvat kansioon: images/ennen-jalkeen/
-     - Lisää alle BEFORE_AFTER-listaan uusi rivi.
-     - Kirjoita kuvien koko nimet päätteineen (esim. .jpg tai .jpeg).
-
-  2. KUVAGALLERIA (tavalliset kuvat)
-     - Lataa kuvat kansioon: images/galleria/
-     - Lisää alle PHOTOS-listaan uusi rivi.
-
-  3. YOUTUBE-VIDEOT
-     - Lisää VIDEOS-listaan videon ID.
-
-  ═══════════════════════════════════════════════════════════
-  -->
-
   <script>
-    // ════════════════════════════════════════════════════
-    // MUOKKAA TÄTÄ OSIOTA LISÄTÄKSESI SISÄLTÖÄ
-    // ════════════════════════════════════════════════════
-
-    // ENNEN & JÄLKEEN -KUVAT
-    // Kuvat haetaan kansiosta: images/ennen-jalkeen/
+    // TÄSSÄ ON KORJATUT POLUT KUVILLESI
     const BEFORE_AFTER = [
       {
         before: 'Saunan-lasi-ennen.jpeg',
         after: 'Saunan-lasi-jalkeen.jpeg',
         caption: 'Saunan lasin puhdistus ja nanopinnoitus',
         location: 'Pori'
-      },
-      // Voit lisätä uusia kuvapareja tähän alle kopioimalla yllä olevan rakenteen
+      }
     ];
 
-    // KUVAGALLERIA (yksittäiset kuvat)
-    // Kuvat haetaan kansiosta: images/galleria/
-    const PHOTOS = [
-      { src: 'photo1.jpg', caption: 'Nanopinnoitettu kylpyhuone', location: 'Pori' },
-      { src: 'photo2.jpg', caption: 'Kylpyhuoneremontti valmis', location: 'Ulvila' },
-    ];
-
-    // YOUTUBE-VIDEOT
-    const VIDEOS = [
-      { id: 'YOUTUBE_ID_TÄHÄN', title: 'Nanopinnoituksen teho' },
-    ];
-
-    // ════════════════════════════════════════════════════
-    // ÄLÄ MUOKKAA TÄMÄN ALAPUOLELLA
-    // ════════════════════════════════════════════════════
+    const PHOTOS = []; // Lisää kuvia tänne kun lataat niitä images/galleria/ -kansioon
+    const VIDEOS = [];
   </script>
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      color: #1c2b3a; background: #f4f7fa;
-      line-height: 1.6; -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
-    :root {
-      --navy: #1c2b3a; --navy2: #243447;
-      --teal: #00a89d; --teal2: #00c4b8;
-      --orange: #e8622a;
-      --light: #f4f7fa; --mid: #e8edf3; --gray: #6b7a8d;
-      --radius: 14px;
-      --shadow: 0 4px 24px rgba(28,43,58,.10);
-      --shadow-lg: 0 12px 48px rgba(28,43,58,.16);
-    }
+    body { font-family: 'Inter', sans-serif; color: #1c2b3a; background: #f4f7fa; line-height: 1.6; }
     .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
-
+    
     /* NAV */
-    .nav {
-      background: rgba(255,255,255,.96); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--mid);
-      position: sticky; top: 0; z-index: 100;
-    }
-    .nav-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 68px; gap: 24px;
-    }
-    .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.1rem; color: var(--navy); }
-    .nav-logo-mark {
-      width: 36px; height: 36px; border-radius: 9px;
-      background: var(--navy); color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: .85rem;
-    }
-    .nav-back {
-      display: flex; align-items: center; gap: 6px;
-      font-size: .875rem; font-weight: 600; color: var(--gray);
-      padding: 6px 12px; border-radius: 8px;
-      transition: color .15s, background .15s;
-    }
-    .nav-back:hover { color: var(--navy); background: var(--light); }
-
-    /* PAGE HEADER */
-    .page-header {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
-      padding: 64px 0 56px; position: relative; overflow: hidden;
-    }
-    .page-header::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(0,168,157,.2) 0%, transparent 65%);
-    }
-    .badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--teal2); background: rgba(0,168,157,.15); border: 1px solid rgba(0,168,157,.3);
-      padding: 4px 12px; border-radius: 100px;
-    }
-    .page-title {
-      font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 800; color: #fff;
-      letter-spacing: -.025em; line-height: 1.15; margin-top: 14px;
-    }
-    .page-sub {
-      font-size: 1rem; color: rgba(255,255,255,.65);
-      margin-top: 12px; max-width: 520px; line-height: 1.7;
-    }
-
+    .nav { background: #fff; border-bottom: 1px solid #e8edf3; position: sticky; top: 0; z-index: 100; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .nav-logo { font-weight: 800; font-size: 1.1rem; color: #1c2b3a; display: flex; align-items: center; gap: 10px; }
+    .nav-logo-mark { width: 36px; height: 36px; background: #1c2b3a; color: #fff; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+    
+    /* HEADER */
+    .page-header { background: linear-gradient(135deg, #1c2b3a 0%, #243447 100%); padding: 64px 0; color: #fff; }
+    .page-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
+    
     /* SECTIONS */
-    .section { padding: 72px 0; }
-    .section-header { margin-bottom: 40px; }
-    .section-title {
-      font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800;
-      color: var(--navy); letter-spacing: -.02em;
-    }
-    .section-sub { font-size: .95rem; color: var(--gray); margin-top: 8px; line-height: 1.65; }
+    .section { padding: 60px 0; }
+    .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 30px; }
 
     /* BEFORE/AFTER SLIDER */
-    .ba-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
-      gap: 28px;
-    }
+    .ba-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 30px; }
     @media (max-width: 500px) { .ba-grid { grid-template-columns: 1fr; } }
-    .ba-card {
-      background: #fff; border-radius: 20px;
-      box-shadow: var(--shadow); overflow: hidden;
-      border: 1px solid var(--mid);
-    }
-    .ba-slider-wrap {
-      position: relative; user-select: none;
-      aspect-ratio: 4/3; cursor: ew-resize;
-      overflow: hidden; background: #111;
-    }
-    .ba-img-before, .ba-img-after {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-    }
-    .ba-img-before img, .ba-img-after img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-    }
+    .ba-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.05); border: 1px solid #e8edf3; }
+    .ba-slider-wrap { position: relative; aspect-ratio: 4/3; overflow: hidden; cursor: ew-resize; background: #eee; }
+    .ba-img-before, .ba-img-after { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .ba-img-before img, .ba-img-after img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .ba-img-after { clip-path: inset(0 50% 0 0); }
-    .ba-divider {
-      position: absolute; top: 0; bottom: 0;
-      width: 3px; background: #fff;
-      left: 50%; transform: translateX(-50%);
-      box-shadow: 0 0 12px rgba(0,0,0,.5);
-      pointer-events: none; z-index: 3;
-    }
-    .ba-handle {
-      position: absolute; top: 50%;
-      left: 50%; transform: translate(-50%, -50%);
-      width: 44px; height: 44px; border-radius: 50%;
-      background: #fff; box-shadow: 0 4px 16px rgba(0,0,0,.4);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 4; pointer-events: none;
-    }
-    .ba-label-before, .ba-label-after {
-      position: absolute; top: 14px; z-index: 5;
-      padding: 4px 11px; border-radius: 6px;
-      font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-      pointer-events: none;
-    }
-    .ba-label-before { left: 14px; background: rgba(0,0,0,.65); color: #fff; }
-    .ba-label-after  { right: 14px; background: var(--teal); color: #fff; }
-    .ba-caption {
-      padding: 16px 20px 18px;
-      display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    }
-    .ba-caption-text { font-size: .9rem; font-weight: 600; color: var(--navy); }
-    .ba-caption-loc { font-size: .78rem; color: var(--gray); display: flex; align-items: center; gap: 4px; }
-
-    /* PHOTO GRID */
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
-    }
-    .photo-card {
-      border-radius: var(--radius); overflow: hidden;
-      background: #fff; box-shadow: var(--shadow);
-      cursor: pointer; transition: transform .2s, box-shadow .2s;
-      border: 1px solid var(--mid);
-    }
-    .photo-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-    .photo-img { aspect-ratio: 4/3; overflow: hidden; position: relative; background: var(--mid); }
-    .photo-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
-    .photo-card:hover .photo-img img { transform: scale(1.04); }
-    .photo-caption {
-      padding: 12px 16px;
-      display: flex; align-items: center; justify-content: space-between; gap: 8px;
-    }
-    .photo-title { font-size: .85rem; font-weight: 600; color: var(--navy); }
-    .photo-loc { font-size: .75rem; color: var(--gray); display: flex; align-items: center; gap: 3px; }
-
-    /* VIDEO GRID */
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 24px;
-    }
-    @media (max-width: 400px) { .video-grid { grid-template-columns: 1fr; } }
-    .video-card {
-      background: #fff; border-radius: 20px; overflow: hidden;
-      box-shadow: var(--shadow); border: 1px solid var(--mid);
-    }
-    .video-wrap { position: relative; aspect-ratio: 16/9; background: #000; }
-    .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
-    .video-info { padding: 16px 20px; }
-    .video-title { font-size: .95rem; font-weight: 700; color: var(--navy); }
-
-    /* FOOTER */
-    .footer { background: #fff; border-top: 1px solid var(--mid); padding: 48px 0; margin-top: 40px; text-align: center; }
-    .footer-text { color: var(--gray); font-size: .875rem; }
+    .ba-divider { position: absolute; top: 0; bottom: 0; width: 3px; background: #fff; left: 50%; transform: translateX(-50%); z-index: 3; box-shadow: 0 0 10px rgba(0,0,0,0.3); }
+    .ba-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: #fff; border-radius: 50%; z-index: 4; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+    .ba-label { position: absolute; top: 15px; padding: 4px 10px; border-radius: 5px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: #fff; z-index: 5; }
+    .ba-label-before { left: 15px; background: rgba(0,0,0,0.6); }
+    .ba-label-after { right: 15px; background: #00a89d; }
+    .ba-caption { padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .ba-caption-text { font-weight: 700; font-size: 0.9rem; }
+    .ba-caption-loc { font-size: 0.8rem; color: #6b7a8d; }
   </style>
 </head>
 <body>
@@ -251,144 +66,64 @@
   <nav class="nav">
     <div class="container">
       <div class="nav-inner">
-        <a href="/" class="nav-logo">
-          <div class="nav-logo-mark">PL</div>
-          <span>PintaLux</span>
-        </a>
-        <a href="/" class="nav-back">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5m0 0l7 7m-7-7l7-7"/></svg>
-          Takaisin etusivulle
-        </a>
+        <a href="/" class="nav-logo"><div class="nav-logo-mark">PL</div>PintaLux</a>
+        <a href="/" style="font-size: 0.9rem; font-weight: 600; color: #6b7a8d;">Takaisin etusivulle</a>
       </div>
     </div>
   </nav>
 
   <header class="page-header">
     <div class="container">
-      <span class="badge">Galleria</span>
-      <h1 class="page-title">Työmme jälki puhuu puolestaan</h1>
-      <p class="page-sub">Katso miten PintaLuxin ammattilaiset ja laadukkaat nanopinnoitteet uudistavat pintoja.</p>
+      <h1 class="page-title">Galleria</h1>
+      <p>Työmme jälki puhuu puolestaan.</p>
     </div>
   </header>
 
-  <main>
-    <!-- ENNEN JA JÄLKEEN -->
+  <main class="container">
     <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Ennen & Jälkeen</h2>
-          <p class="section-sub">Vedä liukusäädintä nähdäksesi eron.</p>
-        </div>
-        <div id="ba-container" class="ba-grid">
-          <!-- JS täyttää -->
-        </div>
-      </div>
-    </section>
-
-    <!-- KUVAGALLERIA -->
-    <section class="section" style="background: #fff; border-top: 1px solid var(--mid); border-bottom: 1px solid var(--mid);">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Kuvagalleria</h2>
-          <p class="section-sub">Poimintoja viimeisimmistä kohteistamme.</p>
-        </div>
-        <div id="photo-container" class="photo-grid">
-          <!-- JS täyttää -->
-        </div>
-      </div>
-    </section>
-
-    <!-- VIDEOT -->
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Videot</h2>
-          <p class="section-sub">Katso nanopinnoituksen teho käytännössä.</p>
-        </div>
-        <div id="video-container" class="video-grid">
-          <!-- JS täyttää -->
-        </div>
-      </div>
+      <h2 class="section-title">Ennen & Jälkeen</h2>
+      <div id="ba-container" class="ba-grid"></div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <p class="footer-text">&copy; 2026 PintaLux Oy. Kaikki oikeudet pidätetään.</p>
-    </div>
-  </footer>
-
   <script>
-    // Renderöi Ennen/Jälkeen -kortit
     const baContainer = document.getElementById('ba-container');
+    
     BEFORE_AFTER.forEach(item => {
       const card = document.createElement('div');
       card.className = 'ba-card';
+      // HUOM: Käytetään suoria polkuja
+      const beforeUrl = `images/ennen-jalkeen/${item.before}`;
+      const afterUrl = `images/ennen-jalkeen/${item.after}`;
+      
       card.innerHTML = `
         <div class="ba-slider-wrap">
-          <div class="ba-img-before"><img src="images/ennen-jalkeen/${item.before}" alt="Ennen"></div>
-          <div class="ba-img-after"><img src="images/ennen-jalkeen/${item.after}" alt="Jälkeen"></div>
+          <div class="ba-img-before"><img src="${beforeUrl}" alt="Ennen"></div>
+          <div class="ba-img-after"><img src="${afterUrl}" alt="Jälkeen"></div>
           <div class="ba-divider"></div>
-          <div class="ba-handle">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M18 8l4 4m0 0l-4 4m4-4H2m4-4l-4 4m0 0l4 4"/></svg>
-          </div>
-          <span class="ba-label-before">Ennen</span>
-          <span class="ba-label-after">Jälkeen</span>
+          <div class="ba-handle">↔</div>
+          <span class="ba-label ba-label-before">Ennen</span>
+          <span class="ba-label ba-label-after">Jälkeen</span>
         </div>
         <div class="ba-caption">
           <span class="ba-caption-text">${item.caption}</span>
-          <span class="ba-caption-loc">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-            ${item.location}
-          </span>
+          <span class="ba-caption-loc">${item.location}</span>
         </div>
       `;
       baContainer.appendChild(card);
     });
 
-    // Renderöi Kuvat
-    const photoContainer = document.getElementById('photo-container');
-    PHOTOS.forEach(photo => {
-      const div = document.createElement('div');
-      div.className = 'photo-card';
-      div.innerHTML = `
-        <div class="photo-img"><img src="images/galleria/${photo.src}" alt="${photo.caption}"></div>
-        <div class="photo-caption">
-          <span class="photo-title">${photo.caption}</span>
-          <span class="photo-loc">${photo.location}</span>
-        </div>
-      `;
-      photoContainer.appendChild(div);
-    });
-
-    // Renderöi Videot
-    const videoContainer = document.getElementById('video-container');
-    VIDEOS.forEach(v => {
-      const div = document.createElement('div');
-      div.className = 'video-card';
-      div.innerHTML = `
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe>
-        </div>
-        <div class="video-info">
-          <h3 class="video-title">${v.title}</h3>
-        </div>
-      `;
-      videoContainer.appendChild(div);
-    });
-
-    // Slider Logiikka
+    // Slider-logiikka
     document.querySelectorAll('.ba-slider-wrap').forEach(slider => {
       const afterImg = slider.querySelector('.ba-img-after');
       const divider = slider.querySelector('.ba-divider');
       const handle = slider.querySelector('.ba-handle');
 
       const move = (e) => {
-        let x = (e.pageX || e.touches[0].pageX) - slider.getBoundingClientRect().left;
-        let w = slider.offsetWidth;
-        let perc = (x / w) * 100;
-        if (perc < 0) perc = 0;
-        if (perc > 100) perc = 100;
+        let rect = slider.getBoundingClientRect();
+        let x = (e.pageX || (e.touches ? e.touches[0].pageX : 0)) - rect.left;
+        let w = rect.width;
+        let perc = Math.max(0, Math.min(100, (x / w) * 100));
         afterImg.style.clipPath = `inset(0 0 0 ${perc}%)`;
         divider.style.left = perc + '%';
         handle.style.left = perc + '%';
