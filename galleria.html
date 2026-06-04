@@ -24,16 +24,14 @@
   1. ENNEN/JÄLKEEN-KUVAT
      - Lataa kuvat kansioon: images/ennen-jalkeen/
      - Lisää alle BEFORE_AFTER-listaan uusi rivi.
-     - Esimerkki: { id: 'kylpyhuone1', caption: 'Kylpyhuoneen pesu', location: 'Pori' }
-     - HUOM: Koodi olettaa että kuvat ovat nimellä: 'kylpyhuone1-before.jpg' ja 'kylpyhuone1-after.jpg'
+     - Kirjoita kuvien koko nimet päätteineen (esim. .jpg tai .jpeg).
 
   2. KUVAGALLERIA (tavalliset kuvat)
      - Lataa kuvat kansioon: images/galleria/
      - Lisää alle PHOTOS-listaan uusi rivi.
-     - Esimerkki: { src: 'remontti.jpg', caption: 'Valmis pinta', location: 'Rauma' }
 
   3. YOUTUBE-VIDEOT
-     - Lisää VIDEOS-listaan videon ID (löytyy YouTube-linkin lopusta).
+     - Lisää VIDEOS-listaan videon ID.
 
   ═══════════════════════════════════════════════════════════
   -->
@@ -44,39 +42,27 @@
     // ════════════════════════════════════════════════════
 
     // ENNEN & JÄLKEEN -KUVAT
-    // Kansion polku on automaattisesti: images/ennen-jalkeen/
+    // Kuvat haetaan kansiosta: images/ennen-jalkeen/
     const BEFORE_AFTER = [
       {
-        id: 'ba1', // Tiedostot: ba1-before.jpg ja ba1-after.jpg
+        before: 'Saunan-lasi-ennen.jpeg',
+        after: 'Saunan-lasi-jalkeen.jpeg',
         caption: 'Saunan lasin puhdistus ja nanopinnoitus',
         location: 'Pori'
       },
-      {
-        id: 'ba2', // Tiedostot: ba2-before.jpg ja ba2-after.jpg
-        caption: 'Suihkulasin kalkkipuhdistus',
-        location: 'Rauma'
-      },
-      {
-        id: 'ba3', // Tiedostot: ba3-before.jpg ja ba3-after.jpg
-        caption: 'Kylpyhuoneen silikonisaumat uusittu',
-        location: 'Tampere'
-      },
+      // Voit lisätä uusia kuvapareja tähän alle kopioimalla yllä olevan rakenteen
     ];
 
     // KUVAGALLERIA (yksittäiset kuvat)
-    // Kansion polku on automaattisesti: images/galleria/
+    // Kuvat haetaan kansiosta: images/galleria/
     const PHOTOS = [
       { src: 'photo1.jpg', caption: 'Nanopinnoitettu kylpyhuone', location: 'Pori' },
       { src: 'photo2.jpg', caption: 'Kylpyhuoneremontti valmis', location: 'Ulvila' },
-      { src: 'photo3.jpg', caption: 'Talon ulkomaalaus', location: 'Harjavalta' },
-      { src: 'photo4.jpg', caption: 'Muuttosiivous', location: 'Pori' },
-      { src: 'photo5.jpg', caption: 'Suihkulasit puhdistettu', location: 'Kankaanpää' },
-      { src: 'photo6.jpg', caption: 'Pintaremontti valmis', location: 'Pori' },
     ];
 
     // YOUTUBE-VIDEOT
     const VIDEOS = [
-      { id: 'YOUTUBE_ID_TÄHÄN', title: 'Nanopinnoituksen tulos — ennen ja jälkeen' },
+      { id: 'YOUTUBE_ID_TÄHÄN', title: 'Nanopinnoituksen teho' },
     ];
 
     // ════════════════════════════════════════════════════
@@ -340,8 +326,8 @@
       card.className = 'ba-card';
       card.innerHTML = `
         <div class="ba-slider-wrap">
-          <div class="ba-img-before"><img src="images/ennen-jalkeen/${item.id}-before.jpg" alt="Ennen"></div>
-          <div class="ba-img-after"><img src="images/ennen-jalkeen/${item.id}-after.jpg" alt="Jälkeen"></div>
+          <div class="ba-img-before"><img src="images/ennen-jalkeen/${item.before}" alt="Ennen"></div>
+          <div class="ba-img-after"><img src="images/ennen-jalkeen/${item.after}" alt="Jälkeen"></div>
           <div class="ba-divider"></div>
           <div class="ba-handle">
             <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M18 8l4 4m0 0l-4 4m4-4H2m4-4l-4 4m0 0l4 4"/></svg>
