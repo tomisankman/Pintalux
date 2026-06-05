@@ -192,6 +192,12 @@
     }
     .btn-primary { background: var(--orange); color: #fff; }
     .btn-primary:hover { background: #d4541f; transform: translateY(-2px); }
+
+    /* INFO SECTION */
+    .info-section { padding: 60px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .info-box { background: #fff; padding: 30px; border-radius: 15px; box-shadow: var(--shadow); }
+    .info-box h3 { margin-bottom: 15px; color: var(--navy); display: flex; align-items: center; gap: 10px; }
+    .info-box p { font-size: 0.95rem; color: var(--gray); }
   </style>
 </head>
 <body>
@@ -211,8 +217,8 @@
     <div class="container">
       <div class="page-header-inner">
         <span class="badge">Hintalaskuri</span>
-        <h1 class="page-title">Mitä kylpyhuonehuolto maksaa?</h1>
-        <p class="page-sub">Laske suuntaa-antava hinta-arvio nanopinnoitukselle ja syväpuhdistukselle. Lopullinen hinta vahvistetaan aina maksuttomassa kartoituksessa.</p>
+        <h1 class="page-title">Laske hinta-arvio kylpyhuoneellesi.</h1>
+        <p class="page-sub">Valitse pinta-ala ja haluamasi palvelut – saat hetkessä suuntaa-antavan hinta-arvion. Lopullinen hinta vahvistetaan maksuttomalla kartoituskäynnillä.</p>
       </div>
     </div>
   </header>
@@ -225,31 +231,44 @@
             <label class="calc-label">Pinta-ala (m²)</label>
             <span class="range-val" id="area-val">8 m²</span>
             <input type="range" id="area" min="2" max="30" value="8" oninput="calculate()">
-            <p style="font-size: 0.8rem; color: var(--gray); margin-top: 8px;">Valitse käsiteltävien pintojen (lattia + seinät) yhteispinta-ala.</p>
           </div>
 
           <div class="calc-input-group">
-            <label class="calc-label">Valitse palvelut</label>
+            <label class="calc-label">Valitse palvelut:</label>
             <div class="checkbox-group">
               <label class="checkbox-item active">
-                <input type="checkbox" id="cleaning" checked onchange="calculate()">
+                <input type="checkbox" id="syva" checked onchange="calculate()">
                 <div>
                   <strong>Syväpuhdistus</strong>
-                  <p style="font-size: 0.8rem; color: var(--gray);">Poistaa kalkin ja pinttyneen lian (26€/m²)</p>
+                  <p style="font-size: 0.8rem; color: var(--gray);">26 €/m²</p>
                 </div>
               </label>
               <label class="checkbox-item active">
-                <input type="checkbox" id="coating" checked onchange="calculate()">
+                <input type="checkbox" id="nano" checked onchange="calculate()">
                 <div>
                   <strong>Nanopinnoitus</strong>
-                  <p style="font-size: 0.8rem; color: var(--gray);">Hylkii likaa ja vettä, 5v takuu (46€/m²)</p>
+                  <p style="font-size: 0.8rem; color: var(--gray);">46 €/m²</p>
                 </div>
               </label>
               <label class="checkbox-item">
-                <input type="checkbox" id="silicone" onchange="calculate()">
+                <input type="checkbox" id="silik" onchange="calculate()">
                 <div>
-                  <strong>Silikonisaumojen vaihto</strong>
-                  <p style="font-size: 0.8rem; color: var(--gray);">Uudet, puhtaat saumat (arvio 150€)</p>
+                  <strong>Silikonisaumat</strong>
+                  <p style="font-size: 0.8rem; color: var(--gray);">alk. 190 €</p>
+                </div>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" id="lasi" onchange="calculate()">
+                <div>
+                  <strong>Lasipinnat</strong>
+                  <p style="font-size: 0.8rem; color: var(--gray);">26 €/m²</p>
+                </div>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" id="hanat" onchange="calculate()">
+                <div>
+                  <strong>Hanat & kromi</strong>
+                  <p style="font-size: 0.8rem; color: var(--gray);">alk. 150 €</p>
                 </div>
               </label>
             </div>
@@ -260,11 +279,26 @@
           <div class="result-card">
             <div class="result-title">Arvioitu hinta</div>
             <div class="result-price" id="total-price">576 €</div>
-            <p class="result-desc">Hinta sisältää työn ja materiaalit. Muistathan, että voit hakea tästä kotitalousvähennystä!</p>
-            <a href="https://wa.me/358458003773" class="btn btn-primary">Pyydä tarkka tarjous</a>
+            <p class="result-desc">Suuntaa-antava arvio, sis. alv 25,5 %</p>
+            <a href="mailto:info@pintalux.fi?subject=Tarjouspyyntö" class="btn btn-primary">Pyydä tarkka tarjous</a>
             <p style="font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 16px;">Vastaamme yleensä muutamassa tunnissa.</p>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-box">
+        <h3>✦ Syväpuhdistus</h3>
+        <p>Poistetaan kalkki, saippuajäämät, rasva ja pinttynyt lika. Pohjatyö ennen pinnoitusta.</p>
+      </div>
+      <div class="info-box">
+        <h3>⬡ Nanopinnoitus</h3>
+        <p>5 vuoden takuu. Pinta hylkii vettä ja likaa – siivous helpottuu huomattavasti.</p>
+      </div>
+      <div class="info-box">
+        <h3>◎ Silikonisaumat</h3>
+        <p>Vanhat silikonit poistetaan ja uusitaan. Hygieeninen ja siisti lopputulos.</p>
       </div>
     </div>
   </main>
@@ -275,13 +309,14 @@
       document.getElementById('area-val').innerText = area + ' m²';
       
       let total = 0;
-      if(document.getElementById('cleaning').checked) total += area * 26;
-      if(document.getElementById('coating').checked) total += area * 46;
-      if(document.getElementById('silicone').checked) total += 150;
+      if(document.getElementById('syva').checked) total += area * 26;
+      if(document.getElementById('nano').checked) total += area * 46;
+      if(document.getElementById('silik').checked) total += 190;
+      if(document.getElementById('lasi').checked) total += area * 26;
+      if(document.getElementById('hanat').checked) total += 150;
 
       document.getElementById('total-price').innerText = total + ' €';
 
-      // Päivitä aktiiviset luokat
       document.querySelectorAll('.checkbox-item').forEach(item => {
         if(item.querySelector('input').checked) {
           item.classList.add('active');
