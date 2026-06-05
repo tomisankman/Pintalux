@@ -14,8 +14,11 @@
     .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
     .nav { background: #fff; border-bottom: 1px solid #e8edf3; position: sticky; top: 0; z-index: 100; }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
-    .nav-logo { font-weight: 800; font-size: 1.1rem; color: #1c2b3a; display: flex; align-items: center; gap: 10px; }
-    .nav-logo-mark { width: 36px; height: 36px; background: #1c2b3a; color: #fff; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .nav-logo img { height: 40px; width: auto; display: block; }
+    .nav-back-link { font-size: 0.9rem; font-weight: 600; color: #6b7a8d; text-decoration: none; transition: color 0.2s; }
+    .nav-back-link:hover { color: #1c2b3a; }
+
     .page-header { background: linear-gradient(135deg, #1c2b3a 0%, #243447 100%); padding: 64px 0; color: #fff; }
     .page-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
     .section { padding: 60px 0; }
@@ -63,7 +66,14 @@
 <body>
 
   <nav class="nav">
-    <div class="container"><div class="nav-inner"><a href="/" class="nav-logo"><div class="nav-logo-mark">PL</div>PintaLux</a><a href="/" style="font-size:0.9rem;font-weight:600;color:#6b7a8d;">Takaisin etusivulle</a></div></div>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <img src="images/PintaLux-logo.png" alt="PintaLux Oy">
+        </a>
+        <a href="/" class="nav-back-link">Takaisin etusivulle</a>
+      </div>
+    </div>
   </nav>
 
   <header class="page-header">
@@ -209,7 +219,6 @@
           else if (url.includes('instagram.com')) {
             type = 'Instagram';
             thumb = 'https://www.instagram.com/static/images/ico/favicon-200.png/ab79da2ad63e.png';
-            // Puhdistetaan linkki kaikesta ylimääräisestä
             let igBase = url.split('?')[0];
             if (!igBase.endsWith('/')) igBase += '/';
             content = `<iframe src="${igBase}embed/captioned/" width="400" height="600" frameborder="0" scrolling="no" allowtransparency="true"></iframe>`;
